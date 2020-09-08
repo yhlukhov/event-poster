@@ -1,5 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { IEvent } from 'src/app/shared/interfaces/event.interface';
+import { EventService } from '../../shared/services/event.service';
 
 @Component({
   selector: 'app-home',
@@ -8,50 +9,22 @@ import { DOCUMENT } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
   aos = "fade-up"
-  collection = [
-    {
-      channel: "Admin",
-      firstName: "Юра",
-      lastName: "Глухов",
-      country: "Україна",
-      languages: ['ukrainian', 'russian', 'english'],
-      email: "yhlukhov@gmail.com",
-      description: "Admin"
-    },
-    {
-      channel: "Admin",
-      firstName: "Юра",
-      lastName: "Глухов",
-      country: "Україна",
-      languages: ['ukrainian', 'russian', 'english'],
-      email: "yhlukhov@gmail.com",
-      description: "Admin"
-    },
-    {
-      channel: "Admin",
-      firstName: "Юра",
-      lastName: "Глухов",
-      country: "Україна",
-      languages: ['ukrainian', 'russian', 'english'],
-      email: "yhlukhov@gmail.com",
-      description: "Admin"
-    },
-    {
-      channel: "Admin",
-      firstName: "Юра",
-      lastName: "Глухов",
-      country: "Україна",
-      languages: ['ukrainian', 'russian', 'english'],
-      email: "yhlukhov@gmail.com",
-      description: "Admin"
-    }
-  ]
-  constructor(
-    // @Inject(DOCUMENT) private _document
-  ) { }
+  collection: Array<IEvent>
+  constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
-    // this._document.body.style.background = 'AntiqueWhite';
+    this.loadCollection()
+  }
+
+  loadCollection() {
+    this.eventService.getAllEvents().subscribe(data => {
+      this.collection = []
+      data.forEach(event => {
+        // const id = event.payload.doc.id
+        const data = event.payload.doc.data() as IEvent
+        this.collection.push(data)
+      })
+    })
   }
 
 }

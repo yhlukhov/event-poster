@@ -6,3 +6,44 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: antiquewhite;
 }
+// Button, Input
+.btn, .inp {
+    height: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid lightsteelblue;
+    border-radius: 7px;
+    font-size: large;
+}
+.btn:disabled {
+    color: rgb(92, 110, 121);
+}
+.btn-event {
+    color: rgb(0, 76, 117);
+    background-color: rgb(187, 231, 255);
+    width: 55%;
+    margin-left: 3%;
+}
+.btn-cancel {
+    color: rgb(0, 76, 117);
+    background-color: rgb(230, 230, 230);
+    width: 42%;
+}
+
+.btn-image {
+    display: flex;
+    align-items: center;
+}
+
+.inp-event {
+    color: rgb(0, 76, 117);
+    width: 95%;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.invisible {
+    opacity: 0;
+}

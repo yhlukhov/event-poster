@@ -73,7 +73,7 @@
   <p>Описание канала</p>
   <quill-editor formControlName="channelDescription"></quill-editor>
 
-  <button [disabled]="!registerForm.valid" type="submit">Зарегистрировать новый канал</button>
+  <button class="btn" [disabled]="!registerForm.valid" type="submit">Зарегистрировать новый канал</button>
   <p *ngIf="!registerForm.valid">(Пожалуйста заполните все поля для регистрации)</p>
 
   <div>

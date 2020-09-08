@@ -7,12 +7,6 @@ import { Language } from '../../shared/models/language.model';
 import { Channel } from '../../shared/models/channel.model';
 import { AuthService } from '../../shared/services/auth.service';
 
-
-interface Animal {
-  name: string;
-  sound: string;
-}
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +15,7 @@ interface Animal {
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
   registerForm: FormGroup
-  isLogin = false //login or register
+  isLogin = true //login or register
   
   countries: Array<ICountry> = [] //populates on Init in method initData()
   languages: Array<ILanguage> = [] //populates on Init in method initData()

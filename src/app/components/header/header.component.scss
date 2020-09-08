@@ -1,3 +1,13 @@
+header {
+    // position: fixed;
+    // top: 0;
+    // z-index: 100;
+}
+nav {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 img {
    transition-duration: 0.2s; 
 }

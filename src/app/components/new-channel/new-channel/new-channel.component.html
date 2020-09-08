@@ -1,0 +1,38 @@
+<h3>Create Event</h3>
+<form [formGroup]="addEventForm" (ngSubmit)="createEvent()" novalidate>
+  <div class="form-control">
+    <label>Название события</label>
+    <input type="text" class="inp inp-event" formControlName="eventName">
+    <div *ngIf="addEventForm.controls['eventName'].invalid && addEventForm.controls['eventName'].touched">Придумайте
+      название вашего события</div>
+  </div>
+  <div class="form-control">
+    <input type="text" class="inp inp-event" formControlName="eventOrganizer">
+    <div *ngIf="addEventForm.controls['eventOrganizer'].invalid && addEventForm.controls['eventOrganizer'].touched">Введите имя организатора</div>
+  </div>
+  <div class="form-control">
+    <input type="datetime-local" class="inp inp-event" formControlName="eventStartDate">
+    <div *ngIf="addEventForm.controls['eventStartDate'].invalid && addEventForm.controls['eventStartDate'].touched">Выберете дату/время проведения</div>
+  </div>
+  <div class="form-control">
+    <input type="text" class="inp inp-event" formControlName="eventDescription">
+  </div>
+  <div class="form-control">
+    <input type="text" class="inp inp-event" formControlName="eventAddress">
+  </div>
+  <div class="form-control">
+    <input type="text" class="inp inp-event" formControlName="eventLink">
+    <div *ngIf="addEventForm.controls['eventLink'].invalid && addEventForm.controls['eventLink'].touched">Введите верную ссылку</div>
+  </div>
+  <div class="form-control">
+    <label for="input-picture" class="btn btn-image">Выберете картинку</label>
+    <input type="file" id="input-picture" class="invisible" formControlName="eventImage" (change)="uploadFile($event)">
+    <mat-progress-bar *ngIf="!imageLoadStatus" mode="determinate" [value]="(imageLoadProgress | async)"></mat-progress-bar>
+    <div *ngIf="imageLoadStatus"><img [src]="image" style="width: 150px; height: 200px;"></div>
+  </div>
+
+  <button type="button" class="btn btn-cancel" (click)="onNoClick()">Закрыть</button>
+  <button type="submit" [disabled]="!addEventForm.valid" class="btn btn-event">Добавить</button>
+  <p *ngIf="!addEventForm.valid">Пожалуйста, заполните все нужные поля формы</p>
+
+</form>

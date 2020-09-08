@@ -1,8 +1,14 @@
 <section>
-    <h2>{{channel.channelName}}</h2>
-    <p style="width: 90%; text-align: right;">{{channel.userName}}</p>
-    <p style="width: 90%; text-align: right;">{{channel.userEmail}}</p>
-    <p style="width: 90%; text-align: right;">{{country.native}}</p>
-    <p style="width: 90%; text-align: right;">{{language.native}}</p>
-    <div>{{channel.channelDescription}}</div>
+  <h2>{{channel.channelName}}</h2>
+  <div class="right-align">
+    <p>{{channel?.userName}}</p>
+    <p>{{channel?.userEmail}}</p>
+    <p>{{country?.native}}</p>
+    <p>{{language?.native}}</p>
+    <button class="btn" (click)="logout()">Выход</button>
+  </div>
+  <quill-view-html [content]="channel?.channelDescription"></quill-view-html>
+  <button class="btn btn-event" (click)="openAddDialog()">Create New Event</button>
+  <section>active events</section>
+
 </section>

@@ -12,7 +12,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afStore: AngularFirestore,
-    private router: Router) { }
+    private router: Router
+    ) { }
 
   registerChannel(channel: IChannel) {
     this.afAuth.createUserWithEmailAndPassword(channel.userEmail, channel.userPassword).then(afUser => {
@@ -32,8 +33,12 @@ export class AuthService {
           this.router.navigateByUrl('profile')
         }).catch(console.log)
       }).catch(console.log)
-      this.afStore.collection('countries').add(Object.assign({}, channel.channelCountry)).catch(console.log)
-      this.afStore.collection('languages').add(Object.assign({}, channel.channelLanguage)).catch(console.log)
+      this.afStore.collection('countries').add(Object.assign({}, channel.channelCountry)).then(()=>{
+        this.lsLoadCountry(channel.channelCountry.code)
+      }).catch(console.log)
+      this.afStore.collection('languages').add(Object.assign({}, channel.channelLanguage)).then(()=>{
+        this.lsLoadLanguage(channel.channelLanguage.code)
+      }).catch(console.log)
     })
   }
 
@@ -42,22 +47,31 @@ export class AuthService {
       this.afStore.collection('channels').ref.where('id', '==', user.user.uid).onSnapshot(snap => {
         snap.forEach(collection => {
           localStorage.setItem('channel', JSON.stringify(collection.data()))
-          this.router.navigateByUrl('/profile')
-          console.log('localStorage.setItem(channel)')
-          this.afStore.collection('countries').ref.where('code', '==', collection.data().countryCode).onSnapshot(snap => {
-            snap.forEach(country => {
-              localStorage.setItem('country', JSON.stringify(country.data()))
-              console.log('localStorage.setItem(country)')
-            })
-          })
-          this.afStore.collection('languages').ref.where('code', '==', collection.data().languageCode).onSnapshot(snap => {
-            snap.forEach(language => {
-              localStorage.setItem('language', JSON.stringify(language.data()))
-              console.log('localStorage.setItem(language)')
-            })
-          })
+          this.router.navigateByUrl('profile')
+          this.lsLoadCountry(collection.data().countryCode)
+          this.lsLoadLanguage(collection.data().languageCode)
         })
       })
     })
   }
+
+  lsLoadCountry(countryCode: string) {
+    this.afStore.collection('countries').ref.where('code', '==', countryCode).onSnapshot(snap => {
+      snap.forEach(country => {
+        localStorage.setItem('country', JSON.stringify(country.data()))
+        // console.log('localStorage.setItem(country)')
+      })
+    })
+  }
+  lsLoadLanguage(languageCode: string) {
+    this.afStore.collection('languages').ref.where('code', '==', languageCode).onSnapshot(snap => {
+      snap.forEach(language => {
+        localStorage.setItem('language', JSON.stringify(language.data()))
+        // console.log('localStorage.setItem(language)')
+      })
+    })
+  }
+
 }
+
+

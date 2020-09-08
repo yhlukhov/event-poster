@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { QuillModule } from 'ngx-quill';
 import 'quill-emoji/dist/quill-emoji.js';
 
@@ -22,6 +25,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { from } from 'rxjs';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { NewChannelComponent } from './components/new-channel/new-channel/new-channel.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     ChannelsComponent,
     AdminComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewChannelComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
     MatSelectModule,
+    MatProgressBarModule,
     QuillModule.forRoot({
       modules: {
         toolbar: [
