@@ -1,12 +1,13 @@
 import { ICountry } from './country.interface';
 import { ILanguage } from './language.interface';
 export interface IChannel {
-    channelName: string,
+    name: string,
     userName: string,
     userEmail: string,
     userPassword: string,
-    channelCountry: ICountry,
-    channelLanguage: ILanguage,
-    channelDescription: string,
-    userRole: string
+    country: ICountry,
+    language: ILanguage,
+    description: string,
+    userRole: string,
+    id: string
 }

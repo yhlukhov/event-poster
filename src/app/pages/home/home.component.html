@@ -1,11 +1,15 @@
 <div class="main">event-poster</div>
 <div class="container">
-  <div class="box" data-aos="fade-up" *ngFor="let event of collection">
-    <p>{{event.name}}</p>
-    <p>{{event.organizer}}</p>
-    <p>{{event.startDate}}</p>
-    <p>{{event.description}}</p>
-    <p>{{event.address}}</p>
-    <a href="{{event.link}}" target="_blank">{{event.link}}</a>
+  <div class="box" data-aos="fade-up" *ngFor="let event of collection" (click)="openEvent(event)">
+    <a [routerLink]="['event/'+event.channel.country.name, event.channel.name, event.id]">
+      <p>{{event.name}}</p>
+      <p>{{event.organizer}}</p>
+      <p>{{event.startDate}}</p>
+      <p>{{event.description}}</p>
+      <p>{{event.address}}</p>
+      <p>{{event.channel.name}}</p>
+      <p>{{event.id}}</p>
+      <a href="{{event.link}}" target="_blank">{{event.link}}</a>
+    </a>
   </div>
 </div>

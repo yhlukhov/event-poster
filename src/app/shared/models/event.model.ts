@@ -1,4 +1,5 @@
 import { IEvent } from '../interfaces/event.interface';
+import { IChannel } from '../interfaces/channel.interface';
 
 export class Event implements IEvent {
     constructor(
@@ -9,5 +10,7 @@ export class Event implements IEvent {
         public address: string,
         public link: string,
         public image: string,
+        public channel: IChannel,
+        public id = ""
     ) { }
 }

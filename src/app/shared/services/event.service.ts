@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentChange, DocumentChangeAction, DocumentReference } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentChangeAction, DocumentReference } from '@angular/fire/firestore';
 import { IEvent } from '../interfaces/event.interface';
 import { Observable } from 'rxjs';
 
@@ -11,11 +11,16 @@ export class EventService {
   constructor( private afStore: AngularFirestore) { }
 
   addEvent(event: IEvent): Promise<DocumentReference> {
-    return this.afStore.collection('events').add(Object.assign({}, event))
+    delete(event.id)
+    return this.afStore.collection('events').add({...event})
   }
 
   getAllEvents(): Observable<DocumentChangeAction<unknown>[]> {
     return this.afStore.collection('events').snapshotChanges()
+  }
+
+  getEventDetails(id: string) {
+    this.afStore.collection('events').snapshotChanges()
   }
 
 }

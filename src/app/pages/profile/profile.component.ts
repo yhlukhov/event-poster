@@ -3,9 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { IChannel } from '../../shared/interfaces/channel.interface';
 import { ICountry } from '../../shared/interfaces/country.interface';
 import { ILanguage } from '../../shared/interfaces/language.interface';
-import { NewChannelComponent } from '../../components/new-channel/new-channel/new-channel.component';
+import { NewEventComponent } from '../../components/new-event/new-event.component';
 import { IEvent } from '../../shared/interfaces/event.interface';
 import { Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
 
 
 @Component({
@@ -16,12 +17,9 @@ import { Router } from '@angular/router';
 
 export class ProfileComponent implements OnInit {
   channel: IChannel
-  country: ICountry
-  language: ILanguage
-
   event: IEvent
 
-  constructor(public dialog: MatDialog, private router: Router) { }
+  constructor(public dialog: MatDialog, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getChannelData()
@@ -29,13 +27,12 @@ export class ProfileComponent implements OnInit {
 
   getChannelData() {
     this.channel = JSON.parse(localStorage.getItem('channel'))
-    this.country = JSON.parse(localStorage.getItem('country'))
-    this.language = JSON.parse(localStorage.getItem('language'))
   }
 
   openAddDialog() {
-    const dialogRef = this.dialog.open(NewChannelComponent, {
-      width: '450px'
+    const dialogRef = this.dialog.open(NewEventComponent, {
+      width: '450px',
+      data: {channel: this.channel}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -45,7 +42,6 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('channel')
-    this.router.navigateByUrl('home')
+    this.authService.logout()
   }
 }

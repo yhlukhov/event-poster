@@ -4,13 +4,14 @@ import { ILanguage } from '../interfaces/language.interface';
 
 export class Channel implements IChannel {
     constructor(
-        public channelName: string,
+        public name: string,
         public userName: string,
         public userEmail: string,
         public userPassword: string,
-        public channelCountry: ICountry,
-        public channelLanguage: ILanguage,
-        public channelDescription: string,
-        public userRole = 'user'
+        public country: ICountry,
+        public language: ILanguage,
+        public description: string,
+        public userRole = 'user',
+        public id = ""
     ) {}
 }

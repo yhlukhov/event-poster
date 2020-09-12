@@ -2,18 +2,18 @@
 <form *ngIf="isLogin" [formGroup]="loginForm" (ngSubmit)="loginFormSubmit()" novalidate>
   <h3>Войти</h3>
   <div>
-    <input id="userEmail" type="email" formControlName="userEmail">
+    <input id="userEmail" class="inp" type="email" formControlName="userEmail">
     <div *ngIf="loginForm.controls['userEmail'].invalid && loginForm.controls['userEmail'].touched">Проверте почту</div>
   </div>
   <div>
-    <input id="userPassword" type="password" formControlName="userPassword">
+    <input id="userPassword" class="inp" type="password" formControlName="userPassword">
     <div *ngIf="loginForm.controls['userPassword'].invalid && loginForm.controls['userPassword'].touched">Введите пароль
     </div>
   </div>
-  <button type="submit">Войти</button>
-  <div>
-    <span>Нет акаунта?</span>
-    <a (click)="switchLoginReg()">Создать</a>
+  <button class="btn" type="submit">Войти</button>
+  <div class="no-acc">
+    <span class="no-acc-msg">Нет акаунта?</span>
+    <a class="no-acc-crt" (click)="switchLoginReg()">Создать</a>
   </div>
 </form>
 
@@ -21,21 +21,21 @@
 <form *ngIf="!isLogin" [formGroup]="registerForm" (ngSubmit)="registerFormSubmit()" novalidate>
   <h3>Зарегистрировать канал</h3>
   <div>
-    <input id="userChannel" type="text" formControlName="channelName">
-    <div *ngIf="registerForm.controls['channelName'].invalid && registerForm.controls['channelName'].touched">Придумайте
+    <input id="userChannel" class="inp" type="text" formControlName="name">
+    <div *ngIf="registerForm.controls['name'].invalid && registerForm.controls['name'].touched">Придумайте
       название вашего канала</div>
   </div>
   <div>
-    <input id="userName" type="text" formControlName="userName">
+    <input id="userName" class="inp" type="text" formControlName="userName">
     <div *ngIf="registerForm.controls['userName'].invalid && registerForm.controls['userName'].touched">Пожалуйста введите имя</div>
   </div>
   <div>
-    <input id="userEmail" type="email" formControlName="userEmail">
+    <input id="userEmail" class="inp" type="email" formControlName="userEmail">
     <div *ngIf="registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched">Проверте почту
     </div>
   </div>
   <div>
-    <input id="userPassword" type="password" formControlName="userPassword">
+    <input id="userPassword" class="inp" type="password" formControlName="userPassword">
     <div *ngIf="registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched">Введите
       пароль</div>
   </div>
@@ -43,19 +43,19 @@
   <!-- Country -->
   <mat-form-field appearance="fill">
     <mat-label>Выберете страну</mat-label>
-    <mat-select ngDefaultControl formControlName="channelCountry" (selectionChange)="selectContry($event)">
+    <mat-select ngDefaultControl formControlName="country" (selectionChange)="selectContry($event)">
       <mat-option *ngFor="let country of countries" [value]="country">
         <p *ngIf="country.name == country.native">{{country.name}}</p>
         <p *ngIf="country.name != country.native">{{country.name}} ({{country.native}})</p>
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="registerForm.controls['channelCountry'].invalid && registerForm.controls['channelCountry'].touched">Please choose a country</mat-error>
+    <mat-error *ngIf="registerForm.controls['country'].invalid && registerForm.controls['country'].touched">Пожалуйста, выберете страну</mat-error>
   </mat-form-field>
 
   <!-- Language -->
   <mat-form-field appearance="fill">
     <mat-label>Выберете язык</mat-label>
-    <mat-select ngDefaultControl formControlName="channelLanguage">
+    <mat-select ngDefaultControl formControlName="language">
       <mat-option *ngFor="let language of countryLanguages" [value]="language">
         <p *ngIf="language.name == language.native">{{language.name}}</p>
         <p *ngIf="language.name != language.native">{{language.name}} ({{language.native}})</p>
@@ -66,18 +66,18 @@
         <p *ngIf="language.name != language.native">{{language.name}} ({{language.native}})</p>
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="registerForm.controls['channelLanguage'].invalid && registerForm.controls['channelLanguage'].touched">Please choose a language</mat-error>
+    <mat-error *ngIf="registerForm.controls['language'].invalid && registerForm.controls['language'].touched">Пожалуйста, выберете язык</mat-error>
   </mat-form-field>
 
   <!-- Description -->
   <p>Описание канала</p>
-  <quill-editor formControlName="channelDescription"></quill-editor>
+  <quill-editor formControlName="description"></quill-editor>
 
-  <button class="btn" [disabled]="!registerForm.valid" type="submit">Зарегистрировать новый канал</button>
-  <p *ngIf="!registerForm.valid">(Пожалуйста заполните все поля для регистрации)</p>
+  <button class="btn btn-submit" [disabled]="!registerForm.valid" type="submit">Зарегистрировать новый канал</button>
+  <p class="err-msg" *ngIf="!registerForm.valid">(Пожалуйста заполните все поля для регистрации)</p>
 
-  <div>
-    <span>Есть акаунт?</span>
-    <a (click)="switchLoginReg()">Войти</a>
+  <div class="no-acc">
+    <span class="yes-acc-msg">Есть акаунт?</span>
+    <a class="yes-acc-crt" (click)="switchLoginReg()">Войти</a>
   </div>
 </form>

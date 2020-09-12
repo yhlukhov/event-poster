@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { IChannel } from '../interfaces/channel.interface';
+import { ICountry } from '../interfaces/country.interface';
+import { ILanguage } from '../interfaces/language.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,29 +18,32 @@ export class AuthService {
     ) { }
 
   registerChannel(channel: IChannel) {
+    
     this.afAuth.createUserWithEmailAndPassword(channel.userEmail, channel.userPassword).then(afUser => {
       const newChannel = {
-        id: afUser.user.uid,
-        channelName: channel.channelName,
+        name: channel.name,
         userName: channel.userName,
         userEmail: afUser.user.email,
-        countryCode: channel.channelCountry.code,
-        languageCode: channel.channelLanguage.code,
-        channelDescription: channel.channelDescription,
-        userRole: channel.userRole
+        country: {...channel.country},
+        language: {...channel.language},
+        description: channel.description,
+        userRole: channel.userRole,
+        id: afUser.user.uid
       }
+      
       this.afStore.collection('channels').add(newChannel).then(afChannelData => {
         afChannelData.get().then(afChannel => {
           localStorage.setItem('channel', JSON.stringify(afChannel.data()))
           this.router.navigateByUrl('profile')
         }).catch(console.log)
       }).catch(console.log)
-      this.afStore.collection('countries').add(Object.assign({}, channel.channelCountry)).then(()=>{
-        this.lsLoadCountry(channel.channelCountry.code)
-      }).catch(console.log)
-      this.afStore.collection('languages').add(Object.assign({}, channel.channelLanguage)).then(()=>{
-        this.lsLoadLanguage(channel.channelLanguage.code)
-      }).catch(console.log)
+      
+      // this.afStore.collection('countries').add({...channel.country}).then(()=>{
+      //   this.lsLoadCountry(channel.country)
+      // }).catch(console.log)
+      // this.afStore.collection('languages').add({...channel.language}).then(()=>{
+      //   this.lsLoadLanguage(channel.language)
+      // }).catch(console.log)
     })
   }
 
@@ -55,19 +60,24 @@ export class AuthService {
     })
   }
 
-  lsLoadCountry(countryCode: string) {
-    this.afStore.collection('countries').ref.where('code', '==', countryCode).onSnapshot(snap => {
+  logout() {
+    this.afAuth.signOut().then(()=>{
+      localStorage.removeItem('channel')
+      this.router.navigateByUrl('login')
+    })
+  }
+
+  lsLoadCountry(country: ICountry) {
+    this.afStore.collection('countries').ref.where('code', '==', country.code).onSnapshot(snap => {
       snap.forEach(country => {
         localStorage.setItem('country', JSON.stringify(country.data()))
-        // console.log('localStorage.setItem(country)')
       })
     })
   }
-  lsLoadLanguage(languageCode: string) {
-    this.afStore.collection('languages').ref.where('code', '==', languageCode).onSnapshot(snap => {
+  lsLoadLanguage(language: ILanguage) {
+    this.afStore.collection('languages').ref.where('code', '==', language.code).onSnapshot(snap => {
       snap.forEach(language => {
         localStorage.setItem('language', JSON.stringify(language.data()))
-        // console.log('localStorage.setItem(language)')
       })
     })
   }

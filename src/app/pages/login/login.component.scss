@@ -1,0 +1,31 @@
+.no-acc {
+    margin-top: 15px;
+    font-size: larger;
+}
+.no-acc-msg {
+    text-shadow: -1px 1px 2px grey;
+}
+.yes-acc-msg {
+    color: whitesmoke;
+    text-shadow: -1px 1px 2px lightgrey;
+}
+.no-acc-crt {
+    cursor: pointer;
+    color: rgb(0, 107, 41);
+    font-weight: bold;
+    margin-left: 10px;
+    text-shadow: -1px 1px 2px rgb(0, 129, 50);
+}
+.yes-acc-crt {
+    cursor: pointer;
+    color: rgb(0, 141, 54);
+    font-weight: bold;
+    margin-left: 10px;
+    text-shadow: -1px 1px 2px rgb(0, 129, 50);
+}
+.btn-submit {
+    color: whitesmoke;
+}
+.err-msg {
+    color: whitesmoke;
+}

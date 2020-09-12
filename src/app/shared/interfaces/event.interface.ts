@@ -1,3 +1,4 @@
+import { IChannel } from './channel.interface';
 export interface IEvent {
     name:string
     organizer: string
@@ -6,4 +7,6 @@ export interface IEvent {
     address: string
     link: string
     image: string
+    channel: IChannel
+    id: string
 }

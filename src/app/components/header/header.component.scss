@@ -1,16 +1,62 @@
-header {
-    // position: fixed;
-    // top: 0;
-    // z-index: 100;
-}
+$events: "События";
+$channels: "Каналы";
+$enter: "Войти";
+$profile: "Мой канал";
+$font-family: ustroke;
+
+// :host {
+//   background-color: rgba(243, 231, 223, 0.685);
+//   display: block;
+// }
+
 nav {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
+
 img {
-   transition-duration: 0.2s; 
+  position: relative;
+  transition-duration: 0.2s;
 }
+
 img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+a {
+  position: relative;
+  font-family: $font-family;
+  transition-duration: 0.2s;
+}
+a:hover {
+  transform: scale(1.05);;
+}
+
+#events::after {
+  content: $events;
+  position: absolute;
+  top: 42px;
+  left: 11px;
+  transform: rotate(16deg);
+}
+#channels::after {
+  content: $channels;
+  position: absolute;
+  top: 40px;
+  left: 20px;
+}
+#enter::after {
+  content: $enter;
+  position: absolute;
+  top: 40px;
+  left: 23px;
+  transform: rotate(-12deg);
+}
+#profile::after {
+  content: $profile;
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  transform: rotate(8deg);
 }

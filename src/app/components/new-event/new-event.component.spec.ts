@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewChannelComponent } from './new-channel.component';
+import { NewEventComponent } from './new-event.component';
 
-describe('NewChannelComponent', () => {
-  let component: NewChannelComponent;
-  let fixture: ComponentFixture<NewChannelComponent>;
+describe('NewEventComponent', () => {
+  let component: NewEventComponent;
+  let fixture: ComponentFixture<NewEventComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewChannelComponent ]
+      declarations: [ NewEventComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewChannelComponent);
+    fixture = TestBed.createComponent(NewEventComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

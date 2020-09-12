@@ -1,1 +1,9 @@
-<p>channels works!</p>
+<section class="container">
+  <div class="box" *ngFor="let channel of channels">
+    <p>{{channel.name}}</p>
+    <p>{{channel.userName}}</p>
+    <p>{{channel.userEmail}}</p>
+    <p>{{channel.id}}</p>
+    <quill-view-html [content]="channel?.description"></quill-view-html>
+  </div>
+</section>

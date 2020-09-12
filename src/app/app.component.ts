@@ -11,8 +11,8 @@ export class AppComponent {
   title = 'event-poster';
   ngOnInit(): void {
     AOS.init({
-      offset: 200,
-      duration: 600,
+      offset: 100,
+      duration: 500,
       easing: 'ease-in-sine',
       delay: 100,
     });

@@ -34,5 +34,7 @@
   <button type="button" class="btn btn-cancel" (click)="onNoClick()">Закрыть</button>
   <button type="submit" [disabled]="!addEventForm.valid" class="btn btn-event">Добавить</button>
   <p *ngIf="!addEventForm.valid">Пожалуйста, заполните все нужные поля формы</p>
+  <p *ngIf="eventAdded">Событие добавлено!</p>
 
 </form>
+

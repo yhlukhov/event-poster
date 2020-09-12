@@ -55,13 +55,13 @@ export class LoginComponent implements OnInit {
   }
   registerFormInit() {
     this.registerForm = new FormGroup({
-      channelName: new FormControl('test-channel', [Validators.required, Validators.min(2)]),
+      name: new FormControl('test-channel', [Validators.required, Validators.min(2)]),
       userName: new FormControl('your name', [Validators.required, Validators.min(2)]),
       userEmail: new FormControl('test@mail.ru', [Validators.required, Validators.email]),
       userPassword: new FormControl('qwerty123', [Validators.required, Validators.min(4)]),
-      channelCountry: new FormControl('', Validators.required),
-      channelLanguage: new FormControl({value: '', disabled: true}, Validators.required),
-      channelDescription: new FormControl('', Validators.required)
+      country: new FormControl('', Validators.required),
+      language: new FormControl({value: '', disabled: true}, Validators.required),
+      description: new FormControl('', Validators.required)
     })
   }
 
@@ -69,9 +69,9 @@ export class LoginComponent implements OnInit {
     const countryLangs = event.value?.languages
     if (countryLangs) {
       this.countryLanguages = this.languages.filter(language => countryLangs.includes(language.code))
-      this.registerForm.get("channelLanguage").enable()
+      this.registerForm.get("language").enable()
     }
-    else this.registerForm.get("channelLanguage").disable()
+    else this.registerForm.get("language").disable()
   }
 
   loginFormSubmit() {
@@ -79,8 +79,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(userEmail, userPassword)
   }
   registerFormSubmit() {
-    const {channelName, userName, userEmail, userPassword, channelCountry, channelLanguage, channelDescription} = this.registerForm.value
-    this.authService.registerChannel(new Channel(channelName, userName, userEmail, userPassword, channelCountry, channelLanguage, channelDescription))
+    const {name, userName, userEmail, userPassword, country, language, description} = this.registerForm.value
+    this.authService.registerChannel(new Channel(name, userName, userEmail, userPassword, country, language, description))
+    // console.log(name, userName, userEmail, userPassword, country, language, description)
   }
 
   switchLoginReg() {

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,7 +25,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { from } from 'rxjs';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { NewChannelComponent } from './components/new-channel/new-channel/new-channel.component';
+import { NewEventComponent } from './components/new-event/new-event.component';
+import { EventDetailsComponent } from './pages/event-details/event-details.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,11 @@ import { NewChannelComponent } from './components/new-channel/new-channel/new-ch
     AdminComponent,
     LoginComponent,
     ProfileComponent,
-    NewChannelComponent
+    NewEventComponent,
+    EventDetailsComponent
+  ],
+  entryComponents: [
+    NewEventComponent
   ],
   imports: [
     BrowserModule,

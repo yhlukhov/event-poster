@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.box {
+  background-color: rgb(255, 248, 210);
+  border: 6px solid rgb(255, 253, 254);
+  border-radius: 1px;
+  box-shadow: -1px 1px 3px rgb(94, 82, 77);
+  color: darkolivegreen;
+  min-width: 320px;
+  min-height: 240px;
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+}

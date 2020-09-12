@@ -1,13 +1,14 @@
 <section>
-  <h2>{{channel.channelName}}</h2>
+  <h2>{{channel.name}}</h2>
   <div class="right-align">
     <p>{{channel?.userName}}</p>
     <p>{{channel?.userEmail}}</p>
-    <p>{{country?.native}}</p>
-    <p>{{language?.native}}</p>
+    <p>{{channel?.country.native}}</p>
+    <p>{{channel?.language.native}}</p>
+    <p>{{channel?.id}}</p>
     <button class="btn" (click)="logout()">Выход</button>
   </div>
-  <quill-view-html [content]="channel?.channelDescription"></quill-view-html>
+  <quill-view-html [content]="channel?.description"></quill-view-html>
   <button class="btn btn-event" (click)="openAddDialog()">Create New Event</button>
   <section>active events</section>
 

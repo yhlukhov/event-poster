@@ -1,49 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body {
-    margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: antiquewhite;
+@font-face {
+  font-family: harringt;
+  src: url(assets/fonts/HARRINGT.TTF);
 }
-// Button, Input
-.btn, .inp {
-    height: 35px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 1px solid lightsteelblue;
-    border-radius: 7px;
-    font-size: large;
-}
-.btn:disabled {
-    color: rgb(92, 110, 121);
-}
-.btn-event {
-    color: rgb(0, 76, 117);
-    background-color: rgb(187, 231, 255);
-    width: 55%;
-    margin-left: 3%;
-}
-.btn-cancel {
-    color: rgb(0, 76, 117);
-    background-color: rgb(230, 230, 230);
-    width: 42%;
+@font-face {
+  font-family: ustroke;
+  src: url(assets/fonts/Ustroke-Regular.ttf);
 }
 
-.btn-image {
-    display: flex;
-    align-items: center;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: antiquewhite;
+}
+
+// Button, Input
+.btn,
+.inp {
+  height: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid lightsteelblue;
+  border-radius: 7px;
+  font-size: large;
 }
 
 .inp-event {
-    color: rgb(0, 76, 117);
-    width: 95%;
+  color: rgb(0, 76, 117);
+  width: 95%;
 }
 
 .form-control {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .invisible {
-    opacity: 0;
+  opacity: 0;
 }
