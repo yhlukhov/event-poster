@@ -3,25 +3,25 @@
     font-size: larger;
 }
 .no-acc-msg {
-    text-shadow: -1px 1px 2px grey;
+    text-shadow: -1px 1px 1px rgba(128, 128, 128, 0.5);
 }
 .yes-acc-msg {
     color: whitesmoke;
-    text-shadow: -1px 1px 2px lightgrey;
+    text-shadow: -1px 1px 1px lightgrey;
 }
 .no-acc-crt {
     cursor: pointer;
     color: rgb(0, 107, 41);
     font-weight: bold;
     margin-left: 10px;
-    text-shadow: -1px 1px 2px rgb(0, 129, 50);
+    text-shadow: -1px 1px 1px rgba(0, 129, 49, 0.5);
 }
 .yes-acc-crt {
     cursor: pointer;
     color: rgb(0, 141, 54);
     font-weight: bold;
     margin-left: 10px;
-    text-shadow: -1px 1px 2px rgb(0, 129, 50);
+    text-shadow: -1px 1px 1px rgb(0, 129, 50);
 }
 .btn-submit {
     color: whitesmoke;

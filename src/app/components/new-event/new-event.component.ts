@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { IEvent } from '../../shared/interfaces/event.interface';
+// import { IEvent } from '../../shared/interfaces/event.interface';
 import { EventService } from '../../shared/services/event.service';
 import { Event } from '../../shared/models/event.model';
-import {ProgressBarMode} from '@angular/material/progress-bar';
+// import {ProgressBarMode} from '@angular/material/progress-bar';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -38,7 +38,6 @@ export class NewEventComponent implements OnInit {
       eventAddress: new FormControl('Место проведения или адрес'),
       eventLink: new FormControl('https://www.google.com', [Validators.required, Validators.pattern(this.urlRegex)]),
       eventImage: new FormControl(),
-      
     })
   }
 

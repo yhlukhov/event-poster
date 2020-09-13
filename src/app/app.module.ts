@@ -27,6 +27,10 @@ import { from } from 'rxjs';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NewEventComponent } from './components/new-event/new-event.component';
 import { EventDetailsComponent } from './pages/event-details/event-details.component';
+import { FilterCountryComponent } from './components/filter-country/filter-country.component';
+import { FilterLanguageComponent } from './components/filter-language/filter-language.component';
+import { FilterCountriesPipe } from './pages/home/filter-countries.pipe';
+import { FilterLanguagesPipe } from './pages/home/filter-languages.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { EventDetailsComponent } from './pages/event-details/event-details.compo
     LoginComponent,
     ProfileComponent,
     NewEventComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    FilterCountryComponent,
+    FilterLanguageComponent,
+    FilterCountriesPipe,
+    FilterLanguagesPipe
   ],
   entryComponents: [
     NewEventComponent

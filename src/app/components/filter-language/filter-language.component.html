@@ -1,0 +1,12 @@
+<form [formGroup]="languageForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Filter by language</mat-label>
+    <mat-select formControlName="languages" multiple (selectionChange)="selectLanguage($event)">
+      <mat-option [value]="englishLanguage">{{englishLanguage?.name}}</mat-option>
+      <mat-option *ngFor="let language of languageList" [value]="language">
+        <p *ngIf="language.name == language.native">{{language.name}}</p>
+        <p *ngIf="language.name != language.native">{{language.name}} ({{language.native}})</p>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>

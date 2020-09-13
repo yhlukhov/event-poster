@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IEvent } from 'src/app/shared/interfaces/event.interface';
 import { EventService } from '../../shared/services/event.service';
 import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
+import { ICountry } from 'src/app/shared/interfaces/country.interface';
+import { ILanguage } from 'src/app/shared/interfaces/language.interface';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,8 @@ import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
 export class HomeComponent implements OnInit {
   aos = "fade-up"
   collection: Array<IEvent>
+  countryFilter: Array<ICountry> = []
+  languageFilter: Array<ILanguage> = []
 
   constructor(
     private eventService: EventService,
@@ -20,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCollection()
+    this.loadFilters()
   }
 
   loadCollection() {
@@ -33,9 +38,16 @@ export class HomeComponent implements OnInit {
       })
     })
   }
-
-  openEvent(event: IEvent) {
-    
+  loadFilters() {
+    if(localStorage.getItem('countryFilter'))
+      this.countryFilter = JSON.parse(localStorage.getItem('countryFilter'))
   }
 
+  onCountryFilter(countries: Array<ICountry>) {
+    localStorage.setItem('countryFilter', JSON.stringify(countries))
+    this.countryFilter = countries
+  }
+  onLanguageFilter(languages: Array<ILanguage>) {
+    this.languageFilter = languages
+  }
 }
