@@ -6,18 +6,17 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
-  
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.authService.checkLoggedIn())
-        return true
+      if(!this.authService.checkLoggedIn()) {
+        return true;
+      }
       else {
-        this.router.navigateByUrl('login')
+        this.router.navigateByUrl('profile')
         return false
       }
   }
-  
 }

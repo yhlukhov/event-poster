@@ -2,7 +2,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Filter by countries</mat-label>
     <mat-select formControlName="countries" multiple (selectionChange)="selectContry($event)">
-      <mat-option *ngFor="let country of countryList" [value]="country">
+      <mat-option *ngFor="let country of countryList" [value]="country.code">
         <p *ngIf="country.name == country.native">{{country.name}}</p>
         <p *ngIf="country.name != country.native">{{country.name}} ({{country.native}})</p>
       </mat-option>

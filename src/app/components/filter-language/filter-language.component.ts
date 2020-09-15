@@ -13,14 +13,14 @@ export class FilterLanguageComponent implements OnInit {
   @Output() languageFilter = new EventEmitter<Array<ILanguage>>()
   languageForm: FormGroup
   languageList: Array<ILanguage> = []
-  englishLanguage: ILanguage
+  selectedLanguages: Array<string> = []
 
   constructor() { }
 
   ngOnInit(): void {
     this.initData()
     this.languageForm = new FormGroup({
-      languages: new FormControl()
+      languages: new FormControl(this.selectedLanguages)
     })
   }
 
@@ -30,11 +30,12 @@ export class FilterLanguageComponent implements OnInit {
       languagesList.forEach(language => {
         this.languageList.push(new Language(language[0], language[1]["name"], language[1]["native"]))
       })
-      this.englishLanguage = this.languageList.find(lang => lang.code==='en')
     })
+    if(localStorage.getItem('languageFilter')) this.selectedLanguages = JSON.parse(localStorage.getItem('languageFilter'))
   }
 
   selectLanguage(selectedLangs: MatSelectChange) {
     this.languageFilter.emit(selectedLangs.value)
   }
+
 }

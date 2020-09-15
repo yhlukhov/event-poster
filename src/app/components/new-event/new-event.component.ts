@@ -48,7 +48,10 @@ export class NewEventComponent implements OnInit {
   createEvent() {
     const {eventName, eventOrganizer, eventStartDate, eventDescription, eventAddress, eventLink} = this.addEventForm.value
     const event = new Event(eventName, eventOrganizer, eventStartDate, eventDescription, eventAddress, eventLink, this.image, this.data.channel)
-    this.eventService.addEvent(event)
+    this.eventService.addEvent(event).then(() => {
+      console.log("Event created")
+      this.dialogRef.close()
+    }).catch(console.log)
   }
 
   uploadFile(event) {

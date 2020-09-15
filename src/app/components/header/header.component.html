@@ -2,8 +2,9 @@
   <nav>
     <a id="events" [routerLink]="[ '/home' ]"><img id="stand" style="width: 100px;" src="/assets/images/events.png" alt="Стенд Событий"></a>
     <a id="channels" [routerLink]="[ '/channels' ]"><img style="width: 100px;" src="/assets/images/channels.png" alt="Каналы"></a>
-    <a id="enter" [routerLink]="[ '/login' ]"><img style="width: 100px;" src="/assets/images/enter.png" alt="Войти организатору"></a>
-    <a id="profile" [routerLink]="[ '/profile' ]"><img style="width: 100px;" src="/assets/images/profile.png" alt="Мой канал"></a>
-    <a [routerLink]="[ '/' ]"><img style="width: 100px;" src="/assets/images/menu_5.png" alt="Reserved"></a>
+    <a id="enter" [routerLink]="[ '/login' ]"  *ngIf="!authService.checkLoggedIn()"><img style="width: 100px;" src="/assets/images/enter.png" alt="Войти организатору"></a>
+    <a id="profile" [routerLink]="[ '/profile' ]" *ngIf="authService.checkLoggedIn()"><img style="width: 100px;" src="/assets/images/profile.png" alt="Мой канал"></a>
+    <a id="bookmarks" [routerLink]="[ '/bookmarks' ]"><img style="width: 100px;" src="/assets/images/bookmarks.png" alt="Закладки"></a>
+    <a id="admin" [routerLink]="[ '/admin' ]" *ngIf="authService.checkAdmin()"><img style="width: 100px;" src="/assets/images/admin.png" alt="Админ"></a>
   </nav>
 </header>

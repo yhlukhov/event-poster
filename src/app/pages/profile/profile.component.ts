@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
   openAddDialog() {
     const dialogRef = this.dialog.open(NewEventComponent, {
       width: '450px',
-      data: {channel: this.channel}
+      data: { channel: this.channel }
     });
 
     dialogRef.afterClosed().subscribe(result => {

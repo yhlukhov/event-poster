@@ -7,10 +7,9 @@ import { IEvent } from '../../shared/interfaces/event.interface';
 })
 export class FilterLanguagesPipe implements PipeTransform {
 
-  transform(collection: Array<IEvent>, languageFilter: Array<ILanguage>): unknown {
+  transform(collection: Array<IEvent>, languageFilter: Array<string>): unknown {
     if(languageFilter.length > 0) {
-      console.log(">0")
-      return collection.filter(event => languageFilter.some(lang => lang.code === event.channel.language.code))
+      return collection?.filter(event => languageFilter.includes(event.channel.language.code))
     }
     else return collection
   }

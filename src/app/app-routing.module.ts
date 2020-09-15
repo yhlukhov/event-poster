@@ -6,7 +6,9 @@ import { EventDetailsComponent } from './pages/event-details/event-details.compo
 import { AdminComponent } from './pages/admin/admin.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { AuthGuard } from './shared/guards/auth.guard';
+import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
+import { AdminGuard } from './shared/guards/admin.guard';
+import { LoginGuard } from './shared/guards/login.guard';
 import { ProfileGuard } from './shared/guards/profile.guard';
 
 
@@ -15,12 +17,11 @@ const routes: Routes = [
   { path: 'home', redirectTo: ''},
   { path: 'channels', component: ChannelsComponent }, 
   { path: 'event/:country/:channel/:id', component: EventDetailsComponent }, 
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], children: [
-
-  ] },
-  { path: 'login', component: LoginComponent },
+  { path: 'bookmarks', component: BookmarksComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard], children: [
+  ] }
 ];
 
 @NgModule({

@@ -2,6 +2,8 @@ $events: "События";
 $channels: "Каналы";
 $enter: "Войти";
 $profile: "Мой канал";
+$bookmarks: "Закладки";
+$admin: "Админ";
 $font-family: ustroke;
 
 // :host {
@@ -59,4 +61,19 @@ a:hover {
   top: 30px;
   left: 20px;
   transform: rotate(8deg);
+}
+#bookmarks::after {
+  content: $bookmarks;
+  position: absolute;
+  font-size: small;
+  top: 44px;
+  left: 14px;
+  transform: rotate(20deg);
+}
+#admin::after {
+  content: $admin;
+  position: absolute;
+  top: 40px;
+  left: 25px;
+  transform: rotate(2deg);
 }

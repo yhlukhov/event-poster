@@ -81,7 +81,6 @@ export class LoginComponent implements OnInit {
   registerFormSubmit() {
     const {name, userName, userEmail, userPassword, country, language, description} = this.registerForm.value
     this.authService.registerChannel(new Channel(name, userName, userEmail, userPassword, country, language, description))
-    // console.log(name, userName, userEmail, userPassword, country, language, description)
   }
 
   switchLoginReg() {

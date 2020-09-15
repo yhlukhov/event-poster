@@ -11,9 +11,9 @@ import { IEvent } from '../../shared/interfaces/event.interface';
   styleUrls: ['./filter-country.component.scss']
 })
 export class FilterCountryComponent implements OnInit {
-  @Output() countryFilter = new EventEmitter<Array<ICountry>>()
+  @Output() countryFilter = new EventEmitter<Array<string>>()
   countryList: Array<ICountry> = []
-  selectedCounties: Array<ICountry> = []
+  selectedCounties: Array<string> = []
   countryForm: FormGroup
 
   constructor() { }

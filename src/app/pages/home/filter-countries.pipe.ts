@@ -7,9 +7,9 @@ import { ICountry } from 'src/app/shared/interfaces/country.interface';
 })
 export class FilterCountriesPipe implements PipeTransform {
 
-  transform(collection: Array<IEvent>, countryFilter: Array<ICountry>): unknown {
+  transform(collection: Array<IEvent>, countryFilter: Array<string>): unknown {
     if (countryFilter.length > 0) {
-      return collection?.filter(event => countryFilter.some(country => country.code === event.channel.country.code))
+      return collection?.filter(event => countryFilter.includes(event.channel.country.code))
     }
     else return collection
   }

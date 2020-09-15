@@ -12,12 +12,14 @@ import { ICountry } from '../../shared/interfaces/country.interface';
 export class ChannelsComponent implements OnInit {
 
   channels: IChannel[]
+  countryFilter: Array<string> = []
+  languageFilter: Array<string> = []
 
   constructor(private channelService: ChannelService) { }
 
   ngOnInit(): void {
     this.loadChannels()
-    this.loadChannel("ZWDrLDv8DBh77xXvixbwFyMNW9n1")
+    this.loadFilters()
   }
 
   loadChannels() {
@@ -27,11 +29,23 @@ export class ChannelsComponent implements OnInit {
       })
     })
   }
+  loadFilters() {
+    if(localStorage.getItem('countryFilter'))
+      this.countryFilter = JSON.parse(localStorage.getItem('countryFilter'))
+    if(localStorage.getItem('languageFilter'))
+      this.languageFilter = JSON.parse(localStorage.getItem('languageFilter'))
+  }
 
-  loadChannel(id:string) {
-    // this.channelService.getChannel(id).snapshotChanges().subscribe(data => {
-    //   console.log(data.payload.data())
-    // })
+  onCountryFilter(countries:Array<string>) {
+    localStorage.setItem('countryFilter', JSON.stringify(countries))
+    this.countryFilter = countries
+    console.log('channels: onCountryFilter()')
+  }
+
+  onLanguageFilter(languages:Array<string>) {
+    localStorage.setItem('languageFilter', JSON.stringify(languages))
+    this.languageFilter = languages
+    console.log('channels: onLanguageFilter()')
   }
 
 }

@@ -1,8 +1,17 @@
+<div class="app-filter-country">
+  <app-filter-country (countryFilter)="onCountryFilter($event)"></app-filter-country>
+</div>
+<div class="app-filter-language">
+  <app-filter-language (languageFilter)="onLanguageFilter($event)"></app-filter-language>
+</div>
+
 <section class="container">
-  <div class="box" *ngFor="let channel of channels">
+  <div class="box" *ngFor="let channel of channels | filterChannelLanguages:languageFilter | filterChannelCountries:countryFilter">
     <p>{{channel.name}}</p>
     <p>{{channel.userName}}</p>
     <p>{{channel.userEmail}}</p>
+    <p>{{channel.country.native}}</p>
+    <p>{{channel.language.native}}</p>
     <p>{{channel.id}}</p>
     <quill-view-html [content]="channel?.description"></quill-view-html>
   </div>

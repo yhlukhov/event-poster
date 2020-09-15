@@ -31,6 +31,9 @@ import { FilterCountryComponent } from './components/filter-country/filter-count
 import { FilterLanguageComponent } from './components/filter-language/filter-language.component';
 import { FilterCountriesPipe } from './pages/home/filter-countries.pipe';
 import { FilterLanguagesPipe } from './pages/home/filter-languages.pipe';
+import { FilterChannelCountriesPipe } from './pages/channels/filter-channel-countries.pipe';
+import { FilterChannelLanguagesPipe } from './pages/channels/filter-channel-languages.pipe';
+import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { FilterLanguagesPipe } from './pages/home/filter-languages.pipe';
     FilterCountryComponent,
     FilterLanguageComponent,
     FilterCountriesPipe,
-    FilterLanguagesPipe
+    FilterLanguagesPipe,
+    FilterChannelCountriesPipe,
+    FilterChannelLanguagesPipe,
+    BookmarksComponent
   ],
   entryComponents: [
     NewEventComponent

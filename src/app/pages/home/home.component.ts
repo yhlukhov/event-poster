@@ -13,8 +13,8 @@ import { ILanguage } from 'src/app/shared/interfaces/language.interface';
 export class HomeComponent implements OnInit {
   aos = "fade-up"
   collection: Array<IEvent>
-  countryFilter: Array<ICountry> = []
-  languageFilter: Array<ILanguage> = []
+  countryFilter: Array<string> = []
+  languageFilter: Array<string> = []
 
   constructor(
     private eventService: EventService,
@@ -41,13 +41,16 @@ export class HomeComponent implements OnInit {
   loadFilters() {
     if(localStorage.getItem('countryFilter'))
       this.countryFilter = JSON.parse(localStorage.getItem('countryFilter'))
+    if(localStorage.getItem('languageFilter'))
+      this.languageFilter = JSON.parse(localStorage.getItem('languageFilter'))
   }
 
-  onCountryFilter(countries: Array<ICountry>) {
+  onCountryFilter(countries: Array<string>) {
     localStorage.setItem('countryFilter', JSON.stringify(countries))
     this.countryFilter = countries
   }
-  onLanguageFilter(languages: Array<ILanguage>) {
+  onLanguageFilter(languages: Array<string>) {
+    localStorage.setItem('languageFilter', JSON.stringify(languages))
     this.languageFilter = languages
   }
 }
