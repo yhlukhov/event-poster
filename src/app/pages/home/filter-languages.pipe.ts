@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ILanguage } from 'src/app/shared/interfaces/language.interface';
 import { IEvent } from '../../shared/interfaces/event.interface';
 
 @Pipe({

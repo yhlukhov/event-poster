@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderPipe } from 'ngx-order-pipe';
 import { IEvent } from 'src/app/shared/interfaces/event.interface';
 import { EventService } from '../../shared/services/event.service';
 import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
-import { ICountry } from 'src/app/shared/interfaces/country.interface';
-import { ILanguage } from 'src/app/shared/interfaces/language.interface';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +18,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private router: Router,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    
     ) { }
 
   ngOnInit(): void {
@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
         const id = eventObj.payload.doc.id
         const data = eventObj.payload.doc.data() as Object
         const event = {...data, id} as IEvent
+        event.startDate = new Date(event.startDate['seconds']*1000)
         this.collection.push(event)
       })
     })
@@ -52,5 +53,9 @@ export class HomeComponent implements OnInit {
   onLanguageFilter(languages: Array<string>) {
     localStorage.setItem('languageFilter', JSON.stringify(languages))
     this.languageFilter = languages
+  }
+
+  consoleLog(event:IEvent) {
+    console.log(new Date(event.startDate['seconds']))
   }
 }

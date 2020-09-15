@@ -34,6 +34,7 @@ import { FilterLanguagesPipe } from './pages/home/filter-languages.pipe';
 import { FilterChannelCountriesPipe } from './pages/channels/filter-channel-countries.pipe';
 import { FilterChannelLanguagesPipe } from './pages/channels/filter-channel-languages.pipe';
 import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
+import { OrderEventsPipe } from './pages/home/order-events.pipe';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
     FilterLanguagesPipe,
     FilterChannelCountriesPipe,
     FilterChannelLanguagesPipe,
-    BookmarksComponent
+    BookmarksComponent,
+    OrderEventsPipe
   ],
   entryComponents: [
     NewEventComponent

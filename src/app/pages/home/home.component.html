@@ -6,11 +6,11 @@
 </div>
 
 <div class="container">
-  <div class="box" data-aos="fade-up" *ngFor="let event of collection | filterCountries:countryFilter | filterLanguages:languageFilter">
-    <a [routerLink]="['event/'+event.channel.country.name, event.channel.name, event.id]">
+  <div class="box" data-aos="fade-up" *ngFor="let event of collection | filterCountries:countryFilter | filterLanguages:languageFilter | orderEvents">
+    <div>
       <p>{{event.name}}</p>
       <p>{{event.organizer}}</p>
-      <p>{{event.startDate}}</p>
+      <p>{{event.startDate | date:"dd/MM/yy HH:mm"}}</p>
       <p>{{event.description}}</p>
       <p>{{event.address}}</p>
       <p>{{event.channel.language.native}}</p>
@@ -18,6 +18,8 @@
       <p>{{event.channel.name}}</p>
       <p>{{event.id}}</p>
       <a href="{{event.link}}" target="_blank">{{event.link}}</a>
-    </a>
+      <p [routerLink]="['event/'+event.channel.country.name, event.channel.name, event.id]">Event Details</p>
+      <button style="display: block; margin-left: 250px;" (click)="consoleLog(event)">consolelog()</button>
+    </div>
   </div>
 </div>
