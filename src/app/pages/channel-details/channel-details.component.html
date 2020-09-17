@@ -1,0 +1,10 @@
+<section>
+  <div class="channel-details">
+    <p>Канал: <span class="detail">{{channel?.name}}</span></p>
+    <p>Организатор: <span class="detail">{{channel?.userName}}</span></p>
+    <p>Емейл: <span class="detail">{{channel?.userEmail}}</span></p>
+    <p>Язык: <span class="detail">{{channel?.language.native}}</span></p>
+    <p>Страна: <span class="detail">{{channel?.country.native}}</span></p>
+    <quill-view-html [content]="channel?.description"></quill-view-html>
+  </div>
+</section>

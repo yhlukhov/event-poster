@@ -1,13 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
-@font-face {
-  font-family: harringt;
-  src: url(assets/fonts/HARRINGT.TTF);
-}
-@font-face {
-  font-family: ustroke;
-  src: url(assets/fonts/Ustroke-Regular.ttf);
-}
+@import "fonts.scss";
 
 
 html,

@@ -35,6 +35,8 @@ import { FilterChannelCountriesPipe } from './pages/channels/filter-channel-coun
 import { FilterChannelLanguagesPipe } from './pages/channels/filter-channel-languages.pipe';
 import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
 import { OrderEventsPipe } from './pages/home/order-events.pipe';
+import { AddBookmarkComponent } from './components/add-bookmark/add-bookmark.component';
+import { ChannelDetailsComponent } from './pages/channel-details/channel-details.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { OrderEventsPipe } from './pages/home/order-events.pipe';
     FilterChannelCountriesPipe,
     FilterChannelLanguagesPipe,
     BookmarksComponent,
-    OrderEventsPipe
+    OrderEventsPipe,
+    AddBookmarkComponent,
+    ChannelDetailsComponent
   ],
   entryComponents: [
     NewEventComponent
@@ -86,7 +90,7 @@ import { OrderEventsPipe } from './pages/home/order-events.pipe';
           ['link', 'image', 'video'],
           ['emoji']
         ],
-        "emoji-toolbar": true,
+        "emoji-toolbar": false,
         "emoji-shortname": true,
         "emoji-textarea": true
       }

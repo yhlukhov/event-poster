@@ -1,0 +1,20 @@
+.icon {
+    position: relative;
+}
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    top: -30px;
+    left: -100px;
+    width: 100px;
+    text-align: center;
+    border: 1px solid lightcoral;
+    border-radius: 5px;
+    background-color: rgba(255, 177, 177, 0.8);
+}
+.icon:hover .tooltip {
+    visibility: visible;
+}
+.ptr {
+    cursor: pointer;
+}

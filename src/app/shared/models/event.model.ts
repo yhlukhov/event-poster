@@ -11,6 +11,7 @@ export class Event implements IEvent {
         public link: string,
         public image: string,
         public channel: IChannel,
+        public bookmark = false,
         public id = ""
     ) { }
 }

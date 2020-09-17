@@ -7,8 +7,11 @@
 
 <div class="container">
   <div class="box" data-aos="fade-up" *ngFor="let event of collection | filterCountries:countryFilter | filterLanguages:languageFilter | orderEvents">
-    <div>
-      <p>{{event.name}}</p>
+    <div class="box-container">
+      <div class="top">
+        <p>{{event.name}}</p>
+        <app-add-bookmark [event]="event"></app-add-bookmark>
+      </div>
       <p>{{event.organizer}}</p>
       <p>{{event.startDate | date:"dd/MM/yy HH:mm"}}</p>
       <p>{{event.description}}</p>
@@ -16,10 +19,8 @@
       <p>{{event.channel.language.native}}</p>
       <p>{{event.channel.country.native}}</p>
       <p>{{event.channel.name}}</p>
-      <p>{{event.id}}</p>
-      <a href="{{event.link}}" target="_blank">{{event.link}}</a>
-      <p [routerLink]="['event/'+event.channel.country.name, event.channel.name, event.id]">Event Details</p>
-      <button style="display: block; margin-left: 250px;" (click)="consoleLog(event)">consolelog()</button>
+      <a class="url" href="{{event.link}}" target="_blank">Ссылка на участие</a>
+      <p class="details" [routerLink]="['event/'+event.channel.country.name, event.channel.name, event.id]">Event Details</p>
     </div>
   </div>
 </div>

@@ -14,5 +14,6 @@
     <p>{{channel.language.native}}</p>
     <p>{{channel.id}}</p>
     <quill-view-html [content]="channel?.description"></quill-view-html>
+    <p class="details" [routerLink]="[ channel.id ]">Смотреть детали</p>
   </div>
 </section>

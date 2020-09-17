@@ -1,13 +1,23 @@
 <section>
-    <div>
-        <p>{{event?.name}}</p>
-        <p>{{event?.organizer}}</p>
-        <p>{{event?.startDate}}</p>
-        <p>{{event?.address}}</p>
-        <p>{{event?.description}}</p>
-        <p>{{event?.link}}</p>
-        <p>{{event?.image}}</p>
-        <p>{{event?.channel.name}}</p>
-        <p>{{event?.id}}</p>
+  <div class="event-details">
+    <div class="flex-line-between">
+      <div>
+        <h2>{{event?.name}}</h2>
+        <a href="{{event?.link}}" target="_blank"><span class="url">Ссылка на участие</span></a>
+      </div>
+      <div class="time">
+        <div>{{dayOfWeek[event?.startDate.getDay()]}}</div>
+        <span>{{event?.startDate.toLocaleDateString()}}
+        </span>
+        <span>{{event?.startDate.toLocaleTimeString()}}</span>
+      </div>
     </div>
+    <p>Организатор &ndash; <span class="detail">{{event?.organizer}}</span></p>
+    <p>Место проведения или адрес &ndash; <span class="detail">{{event?.address}}</span></p>
+    <p class="detail">{{event?.description}}</p>
+    <!-- <p>{{event?.image}}</p> -->
+    <p>Канал: <span class="detail">{{event?.channel.name}}</span></p>
+    <p>Язык: <span class="detail">{{event?.channel.language.native}}</span></p>
+    <p>Страна: <span class="detail">{{event?.channel.country.native}}</span></p>
+  </div>
 </section>

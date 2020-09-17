@@ -14,11 +14,12 @@ export class HomeComponent implements OnInit {
   collection: Array<IEvent>
   countryFilter: Array<string> = []
   languageFilter: Array<string> = []
+  bookmarks: Array<IEvent> = []
 
   constructor(
     private eventService: EventService,
     private router: Router,
-    private actRoute: ActivatedRoute,
+    private actRoute: ActivatedRoute
     
     ) { }
 
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadCollection() {
+    this.loadBookmarks()
     this.eventService.getAllEvents().subscribe(data => {
       this.collection = []
       data.forEach(eventObj => {
@@ -35,6 +37,8 @@ export class HomeComponent implements OnInit {
         const data = eventObj.payload.doc.data() as Object
         const event = {...data, id} as IEvent
         event.startDate = new Date(event.startDate['seconds']*1000)
+        if(this.bookmarks.findIndex(bookmark => bookmark.id === event.id) !== -1) event.bookmark = true
+        console.log(event.bookmark)
         this.collection.push(event)
       })
     })
@@ -44,6 +48,11 @@ export class HomeComponent implements OnInit {
       this.countryFilter = JSON.parse(localStorage.getItem('countryFilter'))
     if(localStorage.getItem('languageFilter'))
       this.languageFilter = JSON.parse(localStorage.getItem('languageFilter'))
+  }
+  loadBookmarks() {
+    if (localStorage.getItem('bookmarks')) {
+      this.bookmarks = JSON.parse(localStorage.getItem('bookmarks'))
+    }
   }
 
   onCountryFilter(countries: Array<string>) {
@@ -55,7 +64,4 @@ export class HomeComponent implements OnInit {
     this.languageFilter = languages
   }
 
-  consoleLog(event:IEvent) {
-    console.log(new Date(event.startDate['seconds']))
-  }
 }

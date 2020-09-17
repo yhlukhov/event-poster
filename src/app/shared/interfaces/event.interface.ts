@@ -8,5 +8,6 @@ export interface IEvent {
     link: string
     image: string
     channel: IChannel
+    bookmark: boolean
     id: string
 }

@@ -1,15 +1,34 @@
 <section>
   <h2>{{channel.name}}</h2>
-  <div class="right-align">
-    <p>{{channel?.userName}}</p>
-    <p>{{channel?.userEmail}}</p>
-    <p>{{channel?.country.native}}</p>
-    <p>{{channel?.language.native}}</p>
-    <p>{{channel?.id}}</p>
-    <button class="btn" (click)="logout()">Выход</button>
+  <div class="flex-container">
+    <div class="right-align">
+      <button class="btn btn-event" (click)="openAddDialog()">Create New Event</button>
+    </div>
   </div>
-  <quill-view-html [content]="channel?.description"></quill-view-html>
-  <button class="btn btn-event" (click)="openAddDialog()">Create New Event</button>
-  <section>active events</section>
+  <div class="flex-container">
+    <div class="right-align">
+      <p class="detail">{{channel?.userName}}</p>
+      <p class="detail">{{channel?.userEmail}}</p>
+      <p class="detail">{{channel?.country.native}}</p>
+      <p class="detail">{{channel?.language.native}}</p>
+      <button class="btn btn-exit" (click)="logout()">Выход</button>
+    </div>
+  </div>
+  <quill-view-html class="details" [content]="channel?.description"></quill-view-html>
+
+  <section class="details">
+    <h4>События канала</h4>
+    <div class="event" *ngFor="let event of events">
+      <div class="data">
+        <p>{{event.name}}</p>
+        <p>{{event.startDate.toLocaleString()}}</p>
+        <p>{{event.description}}</p>
+      </div>
+      <div class="controls">
+        <button class="btn" (click)="editEvent(event)">Изменить</button>
+        <button class="btn" (click)="deleteEvent(event)">Удалить</button>
+      </div>
+    </div>
+  </section>
 
 </section>

@@ -68,12 +68,12 @@ a:hover {
   font-size: small;
   top: 44px;
   left: 14px;
-  transform: rotate(20deg);
+  transform: rotate(18deg);
 }
 #admin::after {
   content: $admin;
   position: absolute;
-  top: 40px;
-  left: 25px;
+  top: 38px;
+  left: 26px;
   transform: rotate(2deg);
 }
