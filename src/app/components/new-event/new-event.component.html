@@ -1,40 +1,83 @@
-<h3>Create Event</h3>
-<form [formGroup]="addEventForm" (ngSubmit)="createEvent()" novalidate>
+<h3>{{data.actionAdd ? "Создать событие" : "Редактировать событие" }}</h3>
+<mat-dialog-content class="mat-typography">
+<form [formGroup]="addEventForm" (ngSubmit)="data.actionAdd ? createEvent() : createEvent()" novalidate>
+
   <div class="form-control">
-    <label>Название события</label>
+    <label>Название события<span class="hint">*<span class="tooltip" style="top:0">Необходимо заполнить</span></span></label>
     <input type="text" class="inp inp-event" formControlName="eventName">
-    <div *ngIf="addEventForm.controls['eventName'].invalid && addEventForm.controls['eventName'].touched">Придумайте
+    <div class="hint" *ngIf="addEventForm.controls['eventName'].invalid && addEventForm.controls['eventName'].touched">
+      Придумайте
       название вашего события</div>
   </div>
+
   <div class="form-control">
+    <label>Организатор(ы)<span class="hint">*<span class="tooltip">Необходимо заполнить</span></span></label>
     <input type="text" class="inp inp-event" formControlName="eventOrganizer">
-    <div *ngIf="addEventForm.controls['eventOrganizer'].invalid && addEventForm.controls['eventOrganizer'].touched">Введите имя организатора</div>
+    <div class="hint"
+         *ngIf="addEventForm.controls['eventOrganizer'].invalid && addEventForm.controls['eventOrganizer'].touched">
+      Введите имя организатора</div>
   </div>
+
   <div class="form-control">
+    <label>Начало события<span class="hint">*<span class="tooltip">Необходимо заполнить</span></span></label>
     <input type="datetime-local" class="inp inp-event" formControlName="eventStartDate">
-    <div *ngIf="addEventForm.controls['eventStartDate'].invalid && addEventForm.controls['eventStartDate'].touched">Выберете дату/время проведения</div>
+    <div class="hint"
+         *ngIf="addEventForm.controls['eventStartDate'].invalid && addEventForm.controls['eventStartDate'].touched">
+      Выберете дату/время проведения</div>
   </div>
+
+  <div class="form-control right-side">
+    <label>Длительность</label>
+    <select class="inp" style="margin-left: 4px;" formControlName="eventDuration">
+      <option value="30 минут">30 минут</option>
+      <option value="1 час" selected>1 час</option>
+      <option *ngFor="let item of duration" value="item">{{item}}</option>
+    </select>
+  </div>
+
   <div class="form-control">
+    <label>Описание события</label>
     <input type="text" class="inp inp-event" formControlName="eventDescription">
   </div>
+
   <div class="form-control">
+    <label>Адрес или место проведения</label>
     <input type="text" class="inp inp-event" formControlName="eventAddress">
   </div>
+
   <div class="form-control">
+    <label>Ссылка на участие (или регистрацию)<span class="hint">*<span class="tooltip">Необходимо
+          заполнить</span></span></label>
     <input type="text" class="inp inp-event" formControlName="eventLink">
-    <div *ngIf="addEventForm.controls['eventLink'].invalid && addEventForm.controls['eventLink'].touched">Введите верную ссылку</div>
+    <div class="hint" *ngIf="addEventForm.controls['eventLink'].invalid && addEventForm.controls['eventLink'].touched">
+      Введите верную
+      ссылку</div>
   </div>
+
+
   <div class="form-control">
-    <label for="input-picture" class="btn btn-image">Выберете картинку</label>
-    <input type="file" id="input-picture" class="invisible" formControlName="eventImage" (change)="uploadFile($event)">
-    <mat-progress-bar *ngIf="!imageLoadStatus" mode="determinate" [value]="(imageLoadProgress | async)"></mat-progress-bar>
-    <div *ngIf="imageLoadStatus"><img [src]="image" style="width: 150px; height: 200px;"></div>
+    <div class="image">
+      <div class="image-wrapper">
+        <img *ngIf="imageLoadStatus" [src]="image">
+        Рекомендованный размер: 320x400<br/>
+        (не больше 1 Мб)
+        <img *ngIf="!data.actionAdd && !imageLoadStatus" [src]="data.event.image">
+      </div>
+      <label class="btn btn-image" for="input-picture">{{data.actionAdd? "Выбрать картинку" : "Изменить картинку"}}</label>
+      <input type="file" id="input-picture" class="invisible" formControlName="eventImage"
+             (change)="uploadFile($event)">
+      <mat-progress-bar *ngIf="!imageLoadStatus && imageSizeValid" mode="determinate"
+                        [value]="(imageLoadProgress | async)"></mat-progress-bar>
+      <div class="hint" *ngIf="!imageSizeValid">Максимальный размер картинки - 1Мб</div>
+      <!-- <div *ngIf="imageLoadStatus"><img [src]="image" style="width: 160px; height: 200px;"></div> -->
+    </div>
   </div>
 
   <button type="button" class="btn btn-cancel" (click)="onNoClick()">Закрыть</button>
-  <button type="submit" [disabled]="!addEventForm.valid" class="btn btn-event">Добавить</button>
-  <p *ngIf="!addEventForm.valid">Пожалуйста, заполните все нужные поля формы</p>
+  <button type="submit" [disabled]="!addEventForm.valid" class="btn btn-event">{{data.actionAdd ? "Добавить" : "Редактировать"}}</button>
+  <p *ngIf="!addEventForm.valid">Пожалуйста, заполните все нужные поля</p>
   <p *ngIf="eventAdded">Событие добавлено!</p>
 
 </form>
 
+</mat-dialog-content>

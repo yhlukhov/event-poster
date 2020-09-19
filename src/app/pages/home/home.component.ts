@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   collection: Array<IEvent>
   countryFilter: Array<string> = []
   languageFilter: Array<string> = []
-  bookmarks: Array<IEvent> = []
+  bookmarks: Array<string> = []
 
   constructor(
     private eventService: EventService,
@@ -37,8 +37,7 @@ export class HomeComponent implements OnInit {
         const data = eventObj.payload.doc.data() as Object
         const event = {...data, id} as IEvent
         event.startDate = new Date(event.startDate['seconds']*1000)
-        if(this.bookmarks.findIndex(bookmark => bookmark.id === event.id) !== -1) event.bookmark = true
-        console.log(event.bookmark)
+        if(this.bookmarks.findIndex(bookmark => bookmark === event.id) !== -1) event.bookmark = true
         this.collection.push(event)
       })
     })

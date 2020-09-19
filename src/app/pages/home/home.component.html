@@ -7,6 +7,7 @@
 
 <div class="container">
   <div class="box" data-aos="fade-up" *ngFor="let event of collection | filterCountries:countryFilter | filterLanguages:languageFilter | orderEvents">
+    <img src="{{event.image}}">
     <div class="box-container">
       <div class="top">
         <p>{{event.name}}</p>
@@ -16,6 +17,7 @@
       <p>{{event.startDate | date:"dd/MM/yy HH:mm"}}</p>
       <p>{{event.description}}</p>
       <p>{{event.address}}</p>
+      <p>{{event.id}}</p>
       <p>{{event.channel.language.native}}</p>
       <p>{{event.channel.country.native}}</p>
       <p>{{event.channel.name}}</p>

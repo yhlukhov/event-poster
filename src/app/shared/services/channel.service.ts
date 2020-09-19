@@ -16,7 +16,7 @@ export class ChannelService {
   }
   
   getChannel(id:string) {
-    return this.afStore.collection('channels').doc(id)
+    return this.afStore.collection('channels').ref.where("id", "==", id)
   }
 
   getLanguage(id:string) {

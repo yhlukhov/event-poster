@@ -8,7 +8,7 @@ import { IEvent } from '../../shared/interfaces/event.interface';
 })
 export class AddBookmarkComponent implements OnInit {
   @Input() event: IEvent
-  eventBookmarks: Array<IEvent> = []
+  eventBookmarks: Array<string> = []
 
   constructor() { }
 
@@ -18,14 +18,14 @@ export class AddBookmarkComponent implements OnInit {
   addBookmark(event: IEvent) {
     if (localStorage.getItem('bookmarks'))
       this.eventBookmarks = JSON.parse(localStorage.getItem('bookmarks'))
-    this.eventBookmarks.push(event)
+    this.eventBookmarks.push(event.id)
     localStorage.setItem('bookmarks', JSON.stringify(this.eventBookmarks))
     event.bookmark = true
   }
 
   removeBookmark(event: IEvent) {
     this.eventBookmarks = JSON.parse(localStorage.getItem('bookmarks'))
-    const index = this.eventBookmarks.findIndex(e => e.id === event.id)
+    const index = this.eventBookmarks.indexOf(event.id)
     this.eventBookmarks.splice(index, 1)
     localStorage.setItem('bookmarks', JSON.stringify(this.eventBookmarks))
     event.bookmark = false

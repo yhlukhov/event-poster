@@ -3,7 +3,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ICountry } from '../../shared/interfaces/country.interface';
 import { Country } from '../../shared/models/country.model';
 import { MatSelectChange } from '@angular/material/select';
-import { IEvent } from '../../shared/interfaces/event.interface';
 
 @Component({
   selector: 'app-filter-country',

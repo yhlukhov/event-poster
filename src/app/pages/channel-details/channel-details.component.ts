@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { IChannel } from '../../shared/interfaces/channel.interface';
 import { from } from 'rxjs';
+import { ChannelService } from '../../shared/services/channel.service';
 
 @Component({
   selector: 'app-channel-details',
@@ -11,7 +12,7 @@ import { from } from 'rxjs';
 })
 export class ChannelDetailsComponent implements OnInit {
   channel: IChannel
-  constructor(private actRoute: ActivatedRoute, private afStore: AngularFirestore) { }
+  constructor(private actRoute: ActivatedRoute, private afStore: AngularFirestore, private channelService: ChannelService) { }
 
   ngOnInit(): void {
     this.getChannel()
@@ -19,12 +20,9 @@ export class ChannelDetailsComponent implements OnInit {
 
   getChannel() {
     const id = this.actRoute.snapshot.paramMap.get('id')
-    this.afStore.collection('channels').snapshotChanges().subscribe(data => {
-      data.forEach(chan => {
-        const data = chan.payload.doc.data() as IChannel
-        if(data.id === id) {
-          this.channel = {...data}
-        }
+    this.channelService.getChannel(id).onSnapshot((channel)=>{
+      channel.forEach(chan=>{
+        this.channel = chan.data() as IChannel
       })
     })
   }

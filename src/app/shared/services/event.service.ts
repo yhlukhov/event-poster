@@ -29,11 +29,10 @@ export class EventService {
   }
 
   editEvent(event: IEvent) {
-
+    return this.afStore.collection('events').doc(event.id).update({...event})
   }
 
   deleteEvent(event: IEvent) {
-    console.log(event)
     return this.afStore.collection('events').doc(event.id).delete()
   }
 

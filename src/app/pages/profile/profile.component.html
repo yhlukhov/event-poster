@@ -2,7 +2,7 @@
   <h2>{{channel.name}}</h2>
   <div class="flex-container">
     <div class="right-align">
-      <button class="btn btn-event" (click)="openAddDialog()">Create New Event</button>
+      <button class="btn btn-event" (click)="openAddDialog()">Создать событие</button>
     </div>
   </div>
   <div class="flex-container">
@@ -25,7 +25,7 @@
         <p>{{event.description}}</p>
       </div>
       <div class="controls">
-        <button class="btn" (click)="editEvent(event)">Изменить</button>
+        <button class="btn" (click)="openEditDialog(event)">Изменить</button>
         <button class="btn" (click)="deleteEvent(event)">Удалить</button>
       </div>
     </div>

@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { IChannel } from '../../shared/interfaces/channel.interface';
 import { NewEventComponent } from '../../components/new-event/new-event.component';
 import { IEvent } from '../../shared/interfaces/event.interface';
-import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { EventService } from '../../shared/services/event.service';
 
@@ -17,11 +16,9 @@ import { EventService } from '../../shared/services/event.service';
 export class ProfileComponent implements OnInit {
   channel: IChannel
   events: Array<IEvent> = []
-  event: IEvent
 
   constructor(
-    public dialog: MatDialog, 
-    private router: Router, 
+    public dialog: MatDialog,
     private authService: AuthService, 
     private eventService: EventService ) { }
 
@@ -35,6 +32,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadEvents() {
+    this.events = []
     this.eventService.getChannelEvents(this.channel).onSnapshot(events => {
       events.forEach(event => {
         const eventData = event.data() as IEvent
@@ -49,17 +47,20 @@ export class ProfileComponent implements OnInit {
   openAddDialog() {
     const dialogRef = this.dialog.open(NewEventComponent, {
       width: '450px',
-      data: { channel: this.channel }
+      data: { channel: this.channel, actionAdd: true }
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.event = result;
-      console.log(this.event)
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadEvents()
     });
   }
-
-  editEvent(event) {
-    console.log(event)
+  openEditDialog(event: IEvent) {
+    const dialogRef = this.dialog.open(NewEventComponent, {
+      width: '450px',
+      data: { channel: this.channel, actionAdd: false, event: event }
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadEvents()
+    });
   }
 
   deleteEvent(event) {

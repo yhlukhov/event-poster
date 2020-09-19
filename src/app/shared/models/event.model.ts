@@ -6,6 +6,7 @@ export class Event implements IEvent {
         public name: string,
         public organizer: string,
         public startDate: Date,
+        public duration: string,
         public description: string,
         public address: string,
         public link: string,

@@ -3,6 +3,7 @@ export interface IEvent {
     name:string
     organizer: string
     startDate: Date
+    duration: string
     description: string
     address: string
     link: string
