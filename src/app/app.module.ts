@@ -1,10 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+registerLocaleData(localeRu);
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 import { QuillModule } from 'ngx-quill';
 import 'quill-emoji/dist/quill-emoji.js';
 
@@ -37,6 +42,14 @@ import { BookmarksComponent } from './pages/bookmarks/bookmarks.component';
 import { OrderEventsPipe } from './pages/home/order-events.pipe';
 import { AddBookmarkComponent } from './components/add-bookmark/add-bookmark.component';
 import { ChannelDetailsComponent } from './pages/channel-details/channel-details.component';
+import { ChannelEventsComponent } from './components/channel-events/channel-events.component';
+import { SubscribeComponent } from './components/subscribe/subscribe.component';
+import { FilterSubscribePipe } from './pages/home/filter-subscribe.pipe';
+import { FilterDatePipe } from './pages/home/filter-date.pipe';
+import { CopyEventComponent } from './components/copy-event/copy-event.component';
+import { FilterBookmarkDatePipe } from './pages/bookmarks/filter-bookmark-date.pipe';
+import { DaysSelectorComponent } from './components/days-selector/days-selector.component';
+import { OrderBookmarkEventsPipe } from './pages/bookmarks/order-bookmark-events.pipe';
 
 @NgModule({
   declarations: [
@@ -59,7 +72,15 @@ import { ChannelDetailsComponent } from './pages/channel-details/channel-details
     BookmarksComponent,
     OrderEventsPipe,
     AddBookmarkComponent,
-    ChannelDetailsComponent
+    ChannelDetailsComponent,
+    ChannelEventsComponent,
+    SubscribeComponent,
+    FilterSubscribePipe,
+    FilterDatePipe,
+    CopyEventComponent,
+    FilterBookmarkDatePipe,
+    DaysSelectorComponent,
+    OrderBookmarkEventsPipe
   ],
   entryComponents: [
     NewEventComponent
@@ -74,6 +95,7 @@ import { ChannelDetailsComponent } from './pages/channel-details/channel-details
     MatFormFieldModule,
     MatSelectModule,
     MatProgressBarModule,
+    MatExpansionModule,
     QuillModule.forRoot({
       modules: {
         toolbar: [
@@ -100,7 +122,12 @@ import { ChannelDetailsComponent } from './pages/channel-details/channel-details
     AngularFirestoreModule,
     AngularFireStorageModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: navigator.language
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

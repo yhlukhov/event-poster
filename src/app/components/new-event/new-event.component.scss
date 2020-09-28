@@ -11,7 +11,7 @@
 }
 .image-wrapper {
     width: 160px;
-    height: 200px;
+    height: 160px;
     margin-top: 10px;
     display: flex;
     text-align: center;
@@ -21,7 +21,7 @@
 }
 img {
     width: 160px;
-    height: 200px;
+    height: 160px;
     position: absolute;
     top: 0;
     left: 0;
@@ -48,6 +48,7 @@ img {
     width: 100px;
     top: -35px;
     left: 0;
+    background-color: rgba(255, 103, 103, 0.5);
     border: 1px solid brown;
     border-radius: 5px;
     visibility: hidden;

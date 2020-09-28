@@ -9,5 +9,6 @@ export interface IChannel {
     language: ILanguage,
     description: string,
     userRole: string,
+    subscribe: boolean,
     id: string
 }

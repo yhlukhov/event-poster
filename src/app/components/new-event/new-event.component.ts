@@ -15,9 +15,10 @@ import { Observable } from 'rxjs';
 export class NewEventComponent implements OnInit {
 
   addEventForm: FormGroup
-  duration = ['1.5 часа', '2 часа', '2.5 часа', '3 часа', '4 часа', '5 часов', '6 часов', '8 часов', '10 часов', 'весь день']
+  today = (new Date()).toISOString().slice(0, 16)
+  duration = ['1.5 часа', '2 часа', '3 часа', '4 часа', '5 часов', '6 часов', '8 часов', '10 часов', 'весь день']
   urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
-  image: string = "https://firebasestorage.googleapis.com/v0/b/goldenagemeditat-1580825076192.appspot.com/o/images%2Fmeditation-img-1.png?alt=media&token=284a1ae7-75db-490c-b572-c5c7777fa2c8"
+  image: string = "https://firebasestorage.googleapis.com/v0/b/goldenagemeditat-1580825076192.appspot.com/o/images%2Fmeditation-img-1.png?alt=media&token=cec36e5b-b119-420a-b1fc-aa45b1d56821"
   imageSizeValid = true
   imageLoadProgress: Observable<Number>
   imageLoadStatus = false
@@ -48,17 +49,25 @@ export class NewEventComponent implements OnInit {
   }
   initEditForm() {
     const event = this.data.event as IEvent
-    console.log(event.image)
     this.addEventForm = new FormGroup({
       eventName: new FormControl(event.name, [Validators.required, Validators.min(2)]),
       eventOrganizer: new FormControl(event.organizer, [Validators.required, Validators.min(2)]),
-      eventStartDate: new FormControl(event.startDate.toISOString().slice(0, 16), [Validators.required]),
+      eventStartDate: new FormControl(this.getDateString(event), [Validators.required]),
       eventDuration: new FormControl(event.duration),
       eventDescription: new FormControl(event.description),
       eventAddress: new FormControl(event.address),
       eventLink: new FormControl(event.link, [Validators.required, Validators.pattern(this.urlRegex)]),
       eventImage: new FormControl(),
     })
+  }
+
+  getDateString(event: IEvent) {
+    const startDate = event.startDate
+    return event.startDate.getFullYear() + '-'
+    + (event.startDate.getMonth()+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + '-'
+    + event.startDate.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + 'T'
+    + event.startDate.getHours().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}) + ':'
+    + event.startDate.getMinutes().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
   }
 
   onNoClick() {

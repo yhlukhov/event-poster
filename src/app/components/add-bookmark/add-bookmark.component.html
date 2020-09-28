@@ -1,10 +1,10 @@
 <div class="icon" *ngIf="!event.bookmark">
   <span class="tooltip">Добавить в закладки</span>
-  <img class="ptr" width="30px" height="30px" src="../../../assets/images/bookmark.png"
+  <img class="ptr" width="30px" height="30px" src="../../../assets/images/pin-bookmark.png"
        (click)="addBookmark(event)">
 </div>
 <div class="icon" *ngIf="event.bookmark">
   <span class="tooltip">Убрать из закладок</span>
-  <img class="ptr" width="30px" height="30px" src="../../../assets/images/bookmarked.png"
+  <img class="ptr" width="30px" height="30px" src="../../../assets/images/pin-bookmarked.png"
        (click)="removeBookmark(event)">
 </div>

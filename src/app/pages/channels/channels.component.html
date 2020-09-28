@@ -6,14 +6,39 @@
 </div>
 
 <section class="container">
-  <div class="box" *ngFor="let channel of channels | filterChannelLanguages:languageFilter | filterChannelCountries:countryFilter">
-    <p>{{channel.name}}</p>
-    <p>{{channel.userName}}</p>
-    <p>{{channel.userEmail}}</p>
-    <p>{{channel.country.native}}</p>
-    <p>{{channel.language.native}}</p>
-    <p>{{channel.id}}</p>
-    <quill-view-html [content]="channel?.description"></quill-view-html>
-    <p class="details" [routerLink]="[ channel.id ]">Смотреть детали</p>
+  <div class="box" *ngFor="let channel of channels | filterChannelCountries:countryFilter | filterChannelLanguages:languageFilter">
+    <div>
+      <div class="start">
+        <img src="../../../assets/images/details.png"
+        [routerLink]="[ channel.id ]" width="34px" height="34px" style="cursor: pointer; margin-top: 2px; margin-left: 2px;" alt="Детали">
+      </div>
+      <div class="top">
+        <h3 [routerLink]="[ channel.id ]">{{channel.name}}</h3>
+        <app-subscribe [channel]="channel"></app-subscribe>
+      </div>
+      <div class="info">
+        <div class="flex-line">
+          <img src="../../../assets/images/user.png" width="30px" height="30px" alt="Проводит">
+          {{channel.userName}}
+        </div>
+        <div class="flex-line">
+          <img src="../../../assets/images/email.png" width="30px" height="30px" alt="Емейл адрес">
+          {{channel.userEmail}}
+        </div>
+        <div class="flex-line">
+          <img src="../../../assets/images/country.png" width="30px" height="30px" alt="Страна">
+          {{channel.country.native}}
+        </div>
+        <div class="flex-line">
+          <img src="../../../assets/images/language.png" width="30px" height="30px" alt="Язык">
+          {{channel.language.native}}
+        </div>
+        
+        <div class="flex-line" [routerLink]="[ channel.id ]" style="cursor: pointer;">
+          <img src="../../../assets/images/details.png" width="30px" height="30px" alt="Детали">
+          Смотреть детали
+        </div>
+      </div>
+    </div>
   </div>
 </section>

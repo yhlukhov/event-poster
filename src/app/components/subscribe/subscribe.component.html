@@ -1,0 +1,6 @@
+<div *ngIf="!subscribed" class="subscribe" (click)="subscribe()">
+    <img src="../../../assets/images/unpin.png" width="32px" height="32px" alt="Подписаться">
+</div>
+<div *ngIf="subscribed" class="subscribe" (click)="unsubscribe()">
+    <img src="../../../assets/images/pin.png" width="32px" height="32px" alt="Одписаться">
+</div>

@@ -1,0 +1,18 @@
+<section>
+
+  <div class="channels" *ngFor="let channel of channels">
+    <div class="channel-data">
+      <div>
+        <div>{{channel.name}}</div>
+        <div>{{channel.userName}}</div>
+        <div>{{channel.userEmail}}</div>
+      </div>
+      <div class="controls">
+        <button class="btn btn-small btn-edit" [routerLink]="[ '/channels/'+channel.id ]">Детали</button>
+        <button class="btn btn-small btn-del" *ngIf="channel.userRole != 'admin-2311'" (click)="delete(channel)">Удалить канал</button>
+      </div>
+    </div>
+    <app-channel-events [channel]="channel"></app-channel-events>
+  </div>
+
+</section>

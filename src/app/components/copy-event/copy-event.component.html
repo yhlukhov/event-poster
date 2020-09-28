@@ -1,0 +1,33 @@
+<h2>Копировать событие</h2>
+<form [formGroup]="copyEventForm" novalidate>
+  <div class="form-control">
+    <label>Начало события<span class="hint">*<span class="tooltip">Необходимо заполнить</span></span></label>
+    <input type="datetime-local" class="inp inp-event" min="{{today}}" formControlName="eventStartDate">
+    <div class="hint"
+         *ngIf="copyEventForm.controls['eventStartDate'].invalid && copyEventForm.controls['eventStartDate'].touched">
+      Выберете дату/время проведения</div>
+  </div>
+  <div class="form-control">
+    <label>Повторять?</label>
+    <select class="inp" formControlName="eventRepeat" (change)="chooseRepeat()">
+      <option value="Не повторять">Не повторять</option>
+      <option value="Ежедневно" selected>Ежедневно</option>
+      <option value="По будням" selected>По будням</option>
+      <option value="Каждую неделю" selected>Каждую неделю</option>
+      <option value="Выберете дни" selected>Выберете дни</option>
+    </select>
+  </div>
+  <div class="form-control"*ngIf="eventRepeat == 'Ежедневно' || eventRepeat == 'По будням' || eventRepeat == 'Каждую неделю'">
+    <label>Сколько повторов?</label>
+    <select class="inp" formControlName = "number">
+        <option *ngFor="let i of number" value="i">{{i}}</option>
+    </select>
+  </div>
+  <div class="form-control"*ngIf="eventRepeat == 'Выберете дни'">
+    <label>Выберете дни:</label>
+    <select class="inp" formControlName = "days">
+        <option *ngFor="let day of daysList" value="day">{{day | date: 'd MMMM, EEEE'}}</option>
+    </select>
+  </div>
+
+</form>

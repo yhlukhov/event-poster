@@ -11,7 +11,10 @@
       <p class="detail">{{channel?.userEmail}}</p>
       <p class="detail">{{channel?.country.native}}</p>
       <p class="detail">{{channel?.language.native}}</p>
-      <button class="btn btn-exit" (click)="logout()">Выход</button>
+      <div class="controls">
+        <button class="btn btn-edit" (click)="edit()">Редактировать</button>
+        <button class="btn btn-exit" (click)="logout()">Выход</button>
+      </div>
     </div>
   </div>
   <quill-view-html class="details" [content]="channel?.description"></quill-view-html>
@@ -22,11 +25,11 @@
       <div class="data">
         <p>{{event.name}}</p>
         <p>{{event.startDate.toLocaleString()}}</p>
-        <p>{{event.description}}</p>
       </div>
       <div class="controls">
-        <button class="btn" (click)="openEditDialog(event)">Изменить</button>
-        <button class="btn" (click)="deleteEvent(event)">Удалить</button>
+        <button class="btn btn-copy" (click)="openCopyDialog(event)">Создать копию</button>
+        <button class="btn btn-edit" (click)="openEditDialog(event)">Изменить</button>
+        <button class="btn btn-del" (click)="deleteEvent(event)">Удалить</button>
       </div>
     </div>
   </section>

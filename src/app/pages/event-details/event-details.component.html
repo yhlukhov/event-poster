@@ -1,3 +1,9 @@
+<ul class="breadcrumb">
+  <li [routerLink]="[ '/' ]" style="cursor: pointer;">Головна</li>
+  <img src="../../../assets/images/arrow-right.png" width="12px" height="12px" style="margin-top: 10px;">
+  <li> {{ event?.name | titlecase }} </li>
+</ul>
+
 <section>
   <div class="event-details">
     <div class="flex-line-between">
@@ -14,10 +20,11 @@
     </div>
     <p>Организатор &ndash; <span class="detail">{{event?.organizer}}</span></p>
     <p>Место проведения или адрес &ndash; <span class="detail">{{event?.address}}</span></p>
-    <p class="detail">{{event?.description}}</p>
+    <quill-view-html [content]="event?.description"></quill-view-html>
     <!-- <p>{{event?.image}}</p> -->
     <p>Канал: <span class="detail">{{event?.channel.name}}</span></p>
     <p>Язык: <span class="detail">{{event?.channel.language.native}}</span></p>
     <p>Страна: <span class="detail">{{event?.channel.country.native}}</span></p>
+    <p>Продолжительность: <span class="detail">{{event?.duration}}</span></p>
   </div>
 </section>

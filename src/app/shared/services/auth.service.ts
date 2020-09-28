@@ -30,16 +30,15 @@ export class AuthService {
         language: { ...channel.language },
         description: channel.description,
         userRole: channel.userRole,
+        subscribe: channel.subscribe,
         id: afUser.user.uid
       }
 
-      this.afStore.collection('channels').add(newChannel).then(afChannelData => {
-        afChannelData.get().then(afChannel => {
-          localStorage.setItem('channel', JSON.stringify(afChannel.data()))
+      this.afStore.collection('channels').doc(afUser.user.uid).set(newChannel).then(() => {
+          localStorage.setItem('channel', JSON.stringify(newChannel))
           this.router.navigateByUrl('profile')
         }).catch(console.log)
       }).catch(console.log)
-    })
   }
 
   login(email: string, password: string) {

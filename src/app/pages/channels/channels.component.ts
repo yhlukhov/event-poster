@@ -27,6 +27,12 @@ export class ChannelsComponent implements OnInit {
       this.channels = channels.docs.map(doc => {
         return doc.data() as IChannel
       })
+      if(localStorage.getItem('unsubscribe')) {
+        const unsubscribed: Array<any> = JSON.parse(localStorage.getItem('unsubscribe'))
+        unsubscribed.forEach(id => {
+          console.log(id)
+        })
+      }
     })
   }
   loadFilters() {

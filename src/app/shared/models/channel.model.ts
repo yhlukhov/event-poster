@@ -12,6 +12,7 @@ export class Channel implements IChannel {
         public language: ILanguage,
         public description: string,
         public userRole = 'user',
-        public id = ""
+        public subscribe = true,
+        public id = "",
     ) {}
 }

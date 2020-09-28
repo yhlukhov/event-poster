@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   collection: Array<IEvent>
   countryFilter: Array<string> = []
   languageFilter: Array<string> = []
+  subscribeFilter: Array<string> = []
   bookmarks: Array<string> = []
 
   constructor(
@@ -47,6 +48,9 @@ export class HomeComponent implements OnInit {
       this.countryFilter = JSON.parse(localStorage.getItem('countryFilter'))
     if(localStorage.getItem('languageFilter'))
       this.languageFilter = JSON.parse(localStorage.getItem('languageFilter'))
+    if(localStorage.getItem('unsubscribed'))
+      this.subscribeFilter = JSON.parse(localStorage.getItem('unsubscribed'))
+    
   }
   loadBookmarks() {
     if (localStorage.getItem('bookmarks')) {

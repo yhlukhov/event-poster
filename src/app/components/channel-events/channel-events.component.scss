@@ -1,0 +1,31 @@
+.event-list {
+  border: 1px solid lightsalmon;
+  border-radius: 5px;
+  margin: 3px;
+  padding: 3px;
+}
+
+.event-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-small {
+  margin-top: 3px;
+  height: 30px;
+  font-size: medium
+}
+
+.btn-x-small {
+  margin-top: 2px;
+  height: 25px;
+  font-size: small
+}
+
+.btn-edit {
+  background-color: rgba(153, 205, 50, 0.5);
+}
+
+.btn-del {
+  background-color: rgba(255, 135, 65, 0.5);
+}

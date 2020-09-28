@@ -1,18 +1,53 @@
 <div class="container">
-    <div class="box" data-aos="fade-up" *ngFor="let event of bookmarks | orderEvents">
-      <div>
-        <p>{{event.name}}</p>
-        <p>{{event.organizer}}</p>
-        <p>{{event.startDate | date:"dd/MM/yy HH:mm"}}</p>
-        <p>{{event.description}}</p>
-        <p>{{event.address}}</p>
-        <p>{{event.channel.language.native}}</p>
-        <p>{{event.channel.country.native}}</p>
-        <p>{{event.channel.name}}</p>
-        <p>{{event.id}}</p>
-        <a href="{{event.link}}" target="_blank">{{event.link}}</a>
-        <p [routerLink]="['event/'+event.channel.country.name, event.channel.name, event.id]">Event Details</p>
-        <app-add-bookmark [event]="event"></app-add-bookmark>
+  <div class="box" data-aos="fade-up" *ngFor="let event of bookmarks">
+    <img class="event-image" src="../../../assets/images/old-paper-antique-grunge.png">
+    <div>
+      <div class="start">
+        <div>
+          <span>{{event.startDate | date:"dd/MM/yyyy"}}</span>
+          <span style="margin-left: 8px;">{{event.startDate | date:"HH:mm"}}</span>
+        </div>
+        <app-add-bookmark [event]="event" style="margin-top: 5px;"></app-add-bookmark>
+      </div>
+
+      <img class="detail-icon" src="../../../assets/images/details.png"
+           [routerLink]="['event/'+event.channel.country.name, event.channel.name, event.id]" width="30px"
+           height="28px" style="cursor: pointer; margin-top: 2px; margin-left: 15px;" alt="Детали">
+      <h3 [routerLink]="['event/'+event.channel.country.name, event.channel.name, event.id]">{{event.name}}</h3>
+      <a class="link-icon" href="{{event.link}}" target="_blank">
+        <img src="../../../assets/images/address.png" width="30px" height="30px" alt="Ссылка на участие">
+      </a>
+      <div class="date">
+        <span>{{event.startDate | date:"dd/MM/yyyy"}}</span>
+      </div>
+      <div class="time">
+        <span style="margin-left: 8px;">{{event.startDate | date:"HH:mm"}}</span>
+      </div>
+      <div class="picture">
+        <img width="80px" height="80px" src="{{event.image}}">
+      </div>
+
+      <div class="info">
+        <div class="flex-line">
+          <!-- <img src="../../../assets/images/user.png" width="30px" height="30px" alt="Проводит"> -->
+          <span>{{event.organizer}}</span>
+        </div>
+        <div class="flex-line">
+          <!-- <img src="../../../assets/images/hourglass.png" width="30px" height="30px" alt="Продолжительность"> -->
+          <span>{{event.duration}}</span></div>
+        <div class="flex-line">
+          <!-- <img src="../../../assets/images/language.png" width="30px" height="30px" alt="Язык"> -->
+          <span>{{event.channel.language.native}}</span>
+        </div>
+        <div class="flex-line">
+          <!-- <img src="../../../assets/images/flower.png" width="30px" height="30px" alt="Канал"> -->
+          <span>{{event.channel.name}}</span>
+        </div>
+        <a class="flex-line" href="{{event.link}}" target="_blank">
+          <!-- <img src="../../../assets/images/address.png" width="30px" height="30px" alt="Ссылка на участие"> -->
+          <span class="link">Ссылка на участие</span>
+        </a>
       </div>
     </div>
   </div>
+</div>

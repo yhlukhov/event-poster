@@ -22,14 +22,13 @@ export class BookmarksComponent implements OnInit {
       bookmarkIds.forEach(id => {
         this.eventService.getEventDetails(id).forEach(bookmarkData => {
           const bookmark = bookmarkData.payload.data() as IEvent
-          if (bookmark) {
+          if (bookmark) { // дістали евент рекорд з бази
             bookmark.startDate = new Date(bookmark.startDate['seconds'] * 1000)
             bookmark.bookmark = true
-            this.bookmarks.push({...bookmark, id})
+            this.bookmarks.push({...bookmark, id} as IEvent)
           }
-          else {
-            const obsoleteId = bookmarkIds.indexOf(id)
-            bookmarkIds.splice(obsoleteId, 1)
+          else { // видалити з локал стореджа ссилку на букмарк якщо івент був видалений з бази
+            bookmarkIds.splice(bookmarkIds.indexOf(id), 1)
             localStorage.setItem('bookmarks', JSON.stringify(bookmarkIds))
           }
         })

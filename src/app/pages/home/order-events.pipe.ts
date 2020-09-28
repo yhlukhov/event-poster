@@ -6,12 +6,11 @@ import { IEvent } from '../../shared/interfaces/event.interface';
 })
 export class OrderEventsPipe implements PipeTransform {
 
-  transform(collection: Array<IEvent>):Array<IEvent> {
+  transform(collection: Array<IEvent>): Array<IEvent> {
     return collection?.sort((a: IEvent, b: IEvent) => {
       if (a.startDate > b.startDate) return 1
       else if (a.startDate < b.startDate) return -1
       else return 0
     })
   }
-
 }

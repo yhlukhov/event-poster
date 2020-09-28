@@ -1,0 +1,23 @@
+.hint {
+    color: brown;
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    position: absolute;
+    width: 100px;
+    top: -35px;
+    left: 0;
+    background-color: rgba(255, 103, 103, 0.5);
+    border: 1px solid brown;
+    border-radius: 5px;
+    visibility: hidden;
+}
+.hint:hover .tooltip {
+    visibility: visible;
+}
+
+.right-side {
+    text-align: right;
+}

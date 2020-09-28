@@ -1,3 +1,9 @@
+<ul class="breadcrumb">
+  <li [routerLink]="[ '/' ]" style="cursor: pointer;">Головна</li>
+  <img src="../../../assets/images/arrow-right.png" width="12px" height="12px" style="margin-top: 10px;">
+  <li> {{ channel?.name | titlecase }} </li>
+</ul>
+
 <section>
   <div class="channel-details">
     <p>Канал: <span class="detail">{{channel?.name}}</span></p>

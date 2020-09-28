@@ -1,3 +1,12 @@
+form {
+    margin: 20px;
+    padding: 5px;
+    width: 70%;
+    border: 4px solid whitesmoke;
+    border-radius: 6px;
+    background-color: rgba(135, 206, 250, 0.9);
+}
+
 .no-acc {
     margin-top: 15px;
     font-size: larger;
@@ -6,7 +15,6 @@
     text-shadow: -1px 1px 1px rgba(128, 128, 128, 0.5);
 }
 .yes-acc-msg {
-    color: whitesmoke;
     text-shadow: -1px 1px 1px lightgrey;
 }
 .no-acc-crt {
@@ -24,8 +32,9 @@
     text-shadow: -1px 1px 1px rgb(0, 129, 50);
 }
 .btn-submit {
-    color: whitesmoke;
+    margin-top: 10px;
+    background-color: rgba(144, 238, 144, 0.8);;
 }
 .err-msg {
-    color: whitesmoke;
+    
 }

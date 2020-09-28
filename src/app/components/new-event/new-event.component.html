@@ -6,8 +6,7 @@
     <label>Название события<span class="hint">*<span class="tooltip" style="top:0">Необходимо заполнить</span></span></label>
     <input type="text" class="inp inp-event" formControlName="eventName">
     <div class="hint" *ngIf="addEventForm.controls['eventName'].invalid && addEventForm.controls['eventName'].touched">
-      Придумайте
-      название вашего события</div>
+      Придумайте название вашего события</div>
   </div>
 
   <div class="form-control">
@@ -20,7 +19,7 @@
 
   <div class="form-control">
     <label>Начало события<span class="hint">*<span class="tooltip">Необходимо заполнить</span></span></label>
-    <input type="datetime-local" class="inp inp-event" formControlName="eventStartDate">
+    <input type="datetime-local" class="inp inp-event" min="{{today}}" formControlName="eventStartDate">
     <div class="hint"
          *ngIf="addEventForm.controls['eventStartDate'].invalid && addEventForm.controls['eventStartDate'].touched">
       Выберете дату/время проведения</div>
@@ -31,13 +30,13 @@
     <select class="inp" style="margin-left: 4px;" formControlName="eventDuration">
       <option value="30 минут">30 минут</option>
       <option value="1 час" selected>1 час</option>
-      <option *ngFor="let item of duration" value="item">{{item}}</option>
+      <option *ngFor="let item of duration" value="{{item}}">{{item}}</option>
     </select>
   </div>
 
   <div class="form-control">
     <label>Описание события</label>
-    <input type="text" class="inp inp-event" formControlName="eventDescription">
+    <quill-editor formControlName="eventDescription"></quill-editor>
   </div>
 
   <div class="form-control">
@@ -59,7 +58,7 @@
     <div class="image">
       <div class="image-wrapper">
         <img *ngIf="imageLoadStatus" [src]="image">
-        Рекомендованный размер: 320x400<br/>
+        Рекомендованный размер: 300x300<br/>
         (не больше 1 Мб)
         <img *ngIf="!data.actionAdd && !imageLoadStatus" [src]="data.event.image">
       </div>
@@ -69,7 +68,6 @@
       <mat-progress-bar *ngIf="!imageLoadStatus && imageSizeValid" mode="determinate"
                         [value]="(imageLoadProgress | async)"></mat-progress-bar>
       <div class="hint" *ngIf="!imageSizeValid">Максимальный размер картинки - 1Мб</div>
-      <!-- <div *ngIf="imageLoadStatus"><img [src]="image" style="width: 160px; height: 200px;"></div> -->
     </div>
   </div>
 
