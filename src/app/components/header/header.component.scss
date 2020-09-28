@@ -27,11 +27,15 @@ img:hover {
 }
 
 a {
+  color: rgb(73, 0, 209);
   position: relative;
   font-family: $font-family;
 }
 a:hover {
   transform: scale(1.05);;
+}
+a:visited {
+  color: rgb(73, 0, 209);
 }
 
 #events::after {

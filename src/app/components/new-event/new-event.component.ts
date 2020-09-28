@@ -18,7 +18,7 @@ export class NewEventComponent implements OnInit {
   today = (new Date()).toISOString().slice(0, 16)
   duration = ['1.5 часа', '2 часа', '3 часа', '4 часа', '5 часов', '6 часов', '8 часов', '10 часов', 'весь день']
   urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
-  image: string = "https://firebasestorage.googleapis.com/v0/b/goldenagemeditat-1580825076192.appspot.com/o/images%2Fmeditation-img-1.png?alt=media&token=cec36e5b-b119-420a-b1fc-aa45b1d56821"
+  image: string = "https://firebasestorage.googleapis.com/v0/b/goldenagemeditat-1580825076192.appspot.com/o/images%2Fmeditation-img-1.png?alt=media&token=578765f5-47af-4cb7-9c47-26b6feb372f4"
   imageSizeValid = true
   imageLoadProgress: Observable<Number>
   imageLoadStatus = false
