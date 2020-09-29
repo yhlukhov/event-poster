@@ -18,6 +18,7 @@ nav {
 }
 
 img {
+  width: 110px;
   position: relative;
   transition-duration: 0.2s;
 }
@@ -32,7 +33,7 @@ a {
   font-family: $font-family;
 }
 a:hover {
-  transform: scale(1.05);;
+  transform: scale(1.05);
 }
 a:visited {
   color: rgb(73, 0, 209);
@@ -41,42 +42,42 @@ a:visited {
 #events::after {
   content: $events;
   position: absolute;
-  top: 42px;
-  left: 11px;
+  top: 50px;
+  left: 15px;
   transform: rotate(16deg);
 }
 #channels::after {
   content: $channels;
   position: absolute;
-  top: 40px;
-  left: 20px;
+  top: 50px;
+  left: 22px;
 }
 #enter::after {
   content: $enter;
   position: absolute;
-  top: 40px;
-  left: 23px;
-  transform: rotate(-12deg);
+  top: 50px;
+  left: 25px;
+  transform: rotate(-8deg);
 }
 #profile::after {
   content: $profile;
   position: absolute;
-  top: 30px;
-  left: 20px;
-  transform: rotate(8deg);
+  top: 36px;
+  left: 25px;
+  transform: rotate(-22deg);
 }
 #bookmarks::after {
   content: $bookmarks;
   position: absolute;
   font-size: small;
-  top: 44px;
-  left: 14px;
-  transform: rotate(18deg);
+  top: 54px;
+  left: 16px;
+  transform: rotate(16deg);
 }
 #admin::after {
   content: $admin;
   position: absolute;
-  top: 38px;
-  left: 26px;
-  transform: rotate(2deg);
+  top: 48px;
+  left: 22px;
+  transform: rotate(-16deg);
 }
