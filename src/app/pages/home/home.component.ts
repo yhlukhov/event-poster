@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   languageFilter: Array<string> = []
   subscribeFilter: Array<string> = []
   bookmarks: Array<string> = []
+  i = 0
 
   constructor(
     private eventService: EventService,
@@ -65,6 +66,13 @@ export class HomeComponent implements OnInit {
   onLanguageFilter(languages: Array<string>) {
     localStorage.setItem('languageFilter', JSON.stringify(languages))
     this.languageFilter = languages
+  }
+
+  counter() {
+    let count = 0;
+    return ()=> {
+      return ++count%8;
+    };
   }
 
 }

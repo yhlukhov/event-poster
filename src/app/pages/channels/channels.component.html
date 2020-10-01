@@ -8,14 +8,11 @@
 <section class="container">
   <div class="box" *ngFor="let channel of channels | filterChannelCountries:countryFilter | filterChannelLanguages:languageFilter">
     <div>
-      <div class="start">
-        <img src="../../../assets/images/details.png"
-        [routerLink]="[ channel.id ]" width="34px" height="34px" style="cursor: pointer; margin-top: 2px; margin-left: 2px;" alt="Детали">
-      </div>
       <div class="top">
         <h3 [routerLink]="[ channel.id ]">{{channel.name}}</h3>
         <app-subscribe [channel]="channel"></app-subscribe>
       </div>
+      <img class="channel-logo" src="{{channel.image}}" width="70px" height="70px">
       <div class="info">
         <div class="flex-line">
           <img src="../../../assets/images/user.png" width="30px" height="30px" alt="Проводит">

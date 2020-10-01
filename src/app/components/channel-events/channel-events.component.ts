@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class ChannelEventsComponent implements OnInit {
   @Input() channel: IChannel
   events: Array<IEvent> = []
-  load = false
+  load = true
 
   constructor(private eventService: EventService) { }
 

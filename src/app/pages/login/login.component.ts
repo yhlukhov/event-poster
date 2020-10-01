@@ -6,6 +6,8 @@ import { ILanguage } from '../../shared/interfaces/language.interface';
 import { Language } from '../../shared/models/language.model';
 import { Channel } from '../../shared/models/channel.model';
 import { AuthService } from '../../shared/services/auth.service';
+import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,12 @@ export class LoginComponent implements OnInit {
   countryLanguages: Array<ILanguage> = [] //array of native languages of selected Country
   englishLanguage: ILanguage // populates in method initData()
 
-  constructor( private authService: AuthService) { }
+  image: string = "https://firebasestorage.googleapis.com/v0/b/goldenagemeditat-1580825076192.appspot.com/o/images%2Fheart.png?alt=media&token=cf7a9778-d739-4c42-a5d1-54a3e773d4c7"
+  imageSizeValid = true
+  imageLoadProgress: Observable<Number>
+  imageLoadStatus = false
+
+  constructor( private authService: AuthService, private afStorage: AngularFireStorage) { }
 
   ngOnInit(): void {
     this.loginFormInit()
@@ -61,7 +68,8 @@ export class LoginComponent implements OnInit {
       userPassword: new FormControl('qwerty123', [Validators.required, Validators.min(4)]),
       country: new FormControl('', Validators.required),
       language: new FormControl({value: '', disabled: true}, Validators.required),
-      description: new FormControl('', Validators.required)
+      description: new FormControl('', Validators.required),
+      image: new FormControl()
     })
   }
 
@@ -80,11 +88,31 @@ export class LoginComponent implements OnInit {
   }
   registerFormSubmit() {
     const {name, userName, userEmail, userPassword, country, language, description} = this.registerForm.value
-    this.authService.registerChannel(new Channel(name, userName, userEmail, userPassword, country, language, description))
+    this.authService.registerChannel(new Channel(name, userName, userEmail, userPassword, country, language, description, this.image))
   }
 
   switchLoginReg() {
     this.isLogin = !this.isLogin
+  }
+
+  uploadFile(event) {
+    const file = event.target.files[0]
+    
+    this.imageLoadStatus = false
+    if (file.size < 1000000) {
+      const type = file.type.slice(file.type.indexOf('/') + 1)
+      const name = file.name.slice(0, file.name.lastIndexOf('.'))
+      const path = `images/${name}.${type}`
+      const upload = this.afStorage.upload(path, file)
+      this.imageLoadProgress = upload.percentageChanges()
+      upload.then(image => {
+        this.afStorage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
+          this.image = url
+          this.imageLoadStatus = true
+        })
+      })
+    }
+    else this.imageSizeValid = false
   }
 
 }

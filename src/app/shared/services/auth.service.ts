@@ -29,6 +29,7 @@ export class AuthService {
         country: { ...channel.country },
         language: { ...channel.language },
         description: channel.description,
+        image: channel.image,
         userRole: channel.userRole,
         subscribe: channel.subscribe,
         id: afUser.user.uid
@@ -46,9 +47,11 @@ export class AuthService {
       this.afStore.collection('channels').ref.where('id', '==', user.user.uid).onSnapshot(snap => {
         snap.forEach(channel => {
           localStorage.setItem('channel', JSON.stringify(channel.data()))
-          this.router.navigateByUrl('profile')
+          channel.data().userRole == 'user' ? this.router.navigateByUrl('profile') : this.router.navigateByUrl('admin')
         })
       })
+    }).catch(err => {
+      alert(err.message)
     })
   }
 

@@ -26,45 +26,35 @@ export class AdminComponent implements OnInit {
     this.channels = []
     this.channelService.getAllChannels().subscribe((channels) => {
       channels.forEach(channel => {
-        const channelObj = channel.data()
-        const { name, userName, userEmail, userPassword, country, language, description, userRole, subscribe, id } = channelObj
-        this.channels.push(new Channel(name, userName, userEmail, userPassword, country, language, description, userRole, subscribe, id))
+        const data = channel.data()
+        const { name, userName, userEmail, userPassword, country, language, description, image, userRole, subscribe, id } = data
+        this.channels.push(new Channel(name, userName, userEmail, userPassword, country, language, description, image, userRole, subscribe, id))
       })
     })
   }
 
   delete(channel: IChannel) {
-    if (confirm("Are you sure?")) {
-      const channelEvents: Array<IEvent> = []
-      this.eventService.getChannelEvents(channel).onSnapshot((snap) => {
-        snap.forEach(event => {
-          const data = event.data()
-          const id = event.id
-          const newEvent = { ...data, id } as IEvent
-          channelEvents.push(newEvent)
+    if (confirm("Вы уверенны что хотите удалить канал? Все события канала будуть так же удалены!")) {
+      this.eventService.getChannelEvents(channel).get().then(event => {
+        event.forEach(record => {
+          const data = record.data() as IEvent
+          const id = record.id
+          const event = {...data, id}
+          this.deleteEvent(event)
         })
-        if (channelEvents.length > 0) {
-          console.log(channelEvents)
-          if (confirm("All the channel events will be also deleted. Proceed?")) {
-            channelEvents.forEach(event => {
-              this.eventService.deleteEvent(event).then(() => {
-                console.log("event deleted")
-              })
-            })
-            this.channelService.deleteChannel(channel).then(() => {
-              console.log("channel deleted!")
-              this.loadChannels()
-            })
-          }
-        }
-        else {
-          this.channelService.deleteChannel(channel).then(() => {
-            console.log("channel deleted!")
-            this.loadChannels()
-          })
-        }
+      })
+      this.channelService.deleteChannel(channel).then(() => {
+        this.loadChannels()
       })
     }
+  }
+
+  deleteEvent(event: IEvent) {
+    this.eventService.deleteEvent(event)
+  }
+
+  filter(event: InputEvent) {
+    // to be implemented
   }
 
 }

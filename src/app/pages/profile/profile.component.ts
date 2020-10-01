@@ -6,6 +6,7 @@ import { IEvent } from '../../shared/interfaces/event.interface';
 import { AuthService } from '../../shared/services/auth.service';
 import { EventService } from '../../shared/services/event.service';
 import { CopyEventComponent } from 'src/app/components/copy-event/copy-event.component';
+import { EditChannelComponent } from '../../components/edit-channel/edit-channel.component';
 
 
 @Component({
@@ -28,11 +29,11 @@ export class ProfileComponent implements OnInit {
     this.loadEvents()
   }
 
-  getChannelData() {
+  getChannelData() { // беру дані з локал стореджу, так як я залогінений і вони там мають зберігатись
     this.channel = JSON.parse(localStorage.getItem('channel'))
   }
 
-  loadEvents() {
+  loadEvents() { // загрузка івентів каналу
     this.events = []
     this.eventService.getChannelEvents(this.channel).onSnapshot(events => {
       events.forEach(event => {
@@ -45,7 +46,7 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  openAddDialog() {
+  openAddDialog() { // додати івент
     const dialogRef = this.dialog.open(NewEventComponent, {
       width: '600px',
       data: { channel: this.channel, actionAdd: true }
@@ -55,7 +56,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  openCopyDialog(event: IEvent) {
+  openCopyDialog(event: IEvent) { // копіювати івент
     const dialogRef = this.dialog.open(CopyEventComponent, {
       width: '600px',
       data: { event: event }
@@ -65,7 +66,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  openEditDialog(event: IEvent) {
+  openEditDialog(event: IEvent) { // редагувати івент
     const dialogRef = this.dialog.open(NewEventComponent, {
       width: '600px',
       data: { channel: this.channel, actionAdd: false, event: event }
@@ -75,16 +76,21 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  deleteEvent(event) {
+  deleteEvent(event) {  // видалити івент
     if (confirm("Are you sure?"))
       this.eventService.deleteEvent(event).then(() => {
         this.loadEvents()
       })
   }
 
-  edit() {
-    // To be implemented
-    console.log('to be implemented')
+  editProfile() {  // редагувати дані каналу (профайлу)
+    const dialogRef = this.dialog.open(EditChannelComponent, {
+      width: '480px',
+      data: { channel: this.channel }
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      // to be added
+    });
   }
 
   logout() {

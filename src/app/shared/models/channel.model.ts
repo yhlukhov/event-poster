@@ -11,6 +11,7 @@ export class Channel implements IChannel {
         public country: ICountry,
         public language: ILanguage,
         public description: string,
+        public image: string,
         public userRole = 'user',
         public subscribe = true,
         public id = "",

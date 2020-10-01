@@ -8,6 +8,7 @@ export interface IChannel {
     country: ICountry,
     language: ILanguage,
     description: string,
+    image: string,
     userRole: string,
     subscribe: boolean,
     id: string

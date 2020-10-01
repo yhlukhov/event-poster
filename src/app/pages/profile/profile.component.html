@@ -1,25 +1,30 @@
 <section>
   <h2>{{channel.name}}</h2>
-  <div class="flex-container">
-    <div class="right-align">
-      <button class="btn btn-event" (click)="openAddDialog()">Создать событие</button>
-    </div>
-  </div>
-  <div class="flex-container">
-    <div class="right-align">
-      <p class="detail">{{channel?.userName}}</p>
-      <p class="detail">{{channel?.userEmail}}</p>
-      <p class="detail">{{channel?.country.native}}</p>
-      <p class="detail">{{channel?.language.native}}</p>
-      <div class="controls">
-        <button class="btn btn-edit" (click)="edit()">Редактировать</button>
-        <button class="btn btn-exit" (click)="logout()">Выход</button>
+  <div class="flex-box">
+    <img class="left-align" src="{{channel?.image}}" width="250px" height="250px">
+    <div>
+      <div class="flex-container">
+        <div class="right-align">
+          <button class="btn btn-event" (click)="openAddDialog()">Создать событие</button>
+        </div>
+      </div>
+      <div class="flex-container">
+        <div class="right-align">
+          <p class="detail">{{channel?.userName}}</p>
+          <p class="detail">{{channel?.userEmail}}</p>
+          <p class="detail">{{channel?.country.native}}</p>
+          <p class="detail">{{channel?.language.native}}</p>
+          <div class="controls">
+            <button class="btn btn-edit" (click)="editProfile()">Редактировать</button>
+            <button class="btn btn-exit" (click)="logout()">Выход</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <quill-view-html class="details" [content]="channel?.description"></quill-view-html>
 
-  <section class="details">
+  <div class="details">
     <h4>События канала</h4>
     <div class="event" *ngFor="let event of events">
       <div class="data">
@@ -32,6 +37,6 @@
         <button class="btn btn-del" (click)="deleteEvent(event)">Удалить</button>
       </div>
     </div>
-  </section>
+  </div>
 
 </section>

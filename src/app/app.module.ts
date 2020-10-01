@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeRu from '@angular/common/locales/ru';
+import localeEn from '@angular/common/locales/en';
+registerLocaleData(localeEn);
 registerLocaleData(localeRu);
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
@@ -50,6 +52,7 @@ import { CopyEventComponent } from './components/copy-event/copy-event.component
 import { FilterBookmarkDatePipe } from './pages/bookmarks/filter-bookmark-date.pipe';
 import { DaysSelectorComponent } from './components/days-selector/days-selector.component';
 import { OrderBookmarkEventsPipe } from './pages/bookmarks/order-bookmark-events.pipe';
+import { EditChannelComponent } from './components/edit-channel/edit-channel.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +83,8 @@ import { OrderBookmarkEventsPipe } from './pages/bookmarks/order-bookmark-events
     CopyEventComponent,
     FilterBookmarkDatePipe,
     DaysSelectorComponent,
-    OrderBookmarkEventsPipe
+    OrderBookmarkEventsPipe,
+    EditChannelComponent
   ],
   entryComponents: [
     NewEventComponent
@@ -125,7 +129,8 @@ import { OrderBookmarkEventsPipe } from './pages/bookmarks/order-bookmark-events
   providers: [
     {
       provide: LOCALE_ID,
-      useValue: navigator.language
+      // useValue: navigator.language
+      useValue: 'ru'
     }
   ],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  min-height: calc(100vh - 400px);
+  min-height: calc(100vh - 421px);
 }
 
 .box {
@@ -10,10 +10,11 @@
   width: 400px;
   min-height: 400px;
   height: fit-content;
-  margin: 35px;
+  margin: 0 25px 25px 25px;
   padding: 5px;
   display: flex;
   flex-direction: column;
+  font-family: murrey;
   position: relative;
 }
 
@@ -21,44 +22,26 @@ h3 {
   width: 70%;
   font-family: akronim;
   text-align: center;
-  margin: 65px auto 0 auto;
+  margin: 95px auto 0 auto;
   cursor: pointer;
 }
 
-.detail-icon {
+.bookmark {
   position: absolute;
-  top: 42px;
-  left: 40px;
-}
-
-.link-icon {
-  position: absolute;
-  top: 42px;
-  right: 55px;
-}
-
-.start {
-  width: 70%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 15%;
-  font-family: candara;
+  top: 50px;
+  right: 11%;
 }
 
 .info {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
-  padding-top: 5px;
-  padding-bottom: 50px;
+  padding-top: 15px;
+  padding-bottom: 60px;
+  font-size: x-large;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: papirus;
-  background-size: cover;
 }
 
 .event-image {
@@ -86,9 +69,12 @@ a:active {
 }
 
 .link {
+  font-size: x-large;
+  font-weight: bold;
   padding-left: 3px;
   padding-right: 3px;
   text-shadow: -1px 1px 2px grey;
+  margin-bottom: 15px;
 }
 
 
@@ -96,22 +82,21 @@ a:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: large;
 }
 
 .date {
+  font-size: larger;
   display: flex;
   justify-content: center;
-  font-family: papirus;
 }
 
 .time {
   display: flex;
   justify-content: center;
   font-size: x-large;
-  font-family: papirus;
 }
 .picture {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
 }

@@ -1,19 +1,35 @@
 section {
   width: 98%;
+  min-height: calc(100vh - 270px);
   margin: 10px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.flex-container {
+.flex-box {
+  margin-right: 3%;
   width: 100%;
-  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.flex-container {
   display: flex;
   justify-content: flex-end;
 }
+.left-align {
+  opacity: 0.9;
+  border: 1px solid wheat;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  box-shadow: -1px 1px 3px rgb(94, 82, 77);
+}
 .right-align {
   width: 250px;
+  margin-bottom: 10px;
   margin-right: 2%;
   padding: 5px;
   background-color: wheat;

@@ -5,12 +5,31 @@
 </ul>
 
 <section>
-  <div class="channel-details">
-    <p>Канал: <span class="detail">{{channel?.name}}</span></p>
-    <p>Организатор: <span class="detail">{{channel?.userName}}</span></p>
-    <p>Емейл: <span class="detail">{{channel?.userEmail}}</span></p>
-    <p>Язык: <span class="detail">{{channel?.language.native}}</span></p>
-    <p>Страна: <span class="detail">{{channel?.country.native}}</span></p>
+  <h2>{{channel?.name | titlecase}}</h2>
+  <hr><br>
+  <div class="flex-line-start">
+    <img class="event-image" src="{{channel?.image}}">
+      <table class="detail">
+        <tr>
+          <td>Организатор</td>
+          <td>{{channel?.userName}}</td>
+        </tr>
+        <tr>
+          <td>Емейл</td>
+          <td>{{channel?.userEmail}}</td>
+        </tr>
+        <tr>
+          <td>Язык</td>
+          <td>{{channel?.language.native}}</td>
+        </tr>
+        <tr>
+          <td>Страна</td>
+          <td>{{channel?.country.native}}</td>
+        </tr>
+      </table>
+  </div>
+  <div class="description">
     <quill-view-html [content]="channel?.description"></quill-view-html>
   </div>
+  <hr>
 </section>

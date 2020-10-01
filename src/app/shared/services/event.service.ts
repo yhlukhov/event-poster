@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentChangeAction, DocumentReference } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentChangeAction, DocumentReference, DocumentSnapshot, AngularFirestoreCollection, CollectionReference, DocumentData } from '@angular/fire/firestore';
 import { IEvent } from '../interfaces/event.interface';
 import { Observable } from 'rxjs';
 import { IChannel } from '../interfaces/channel.interface';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +29,11 @@ export class EventService {
     return this.afStore.collection('events').doc(id).snapshotChanges()
   }
 
-  editEvent(event: IEvent) {
+  editEvent(event: IEvent):Promise<void> {
     return this.afStore.collection('events').doc(event.id).update({...event})
   }
 
-  deleteEvent(event: IEvent) {
+  deleteEvent(event: IEvent):Promise<void> {
     return this.afStore.collection('events').doc(event.id).delete()
   }
 

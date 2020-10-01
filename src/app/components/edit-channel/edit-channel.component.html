@@ -1,1 +1,87 @@
-<p>edit-channel works!</p>
+<mat-dialog-content class="mat-typography">
+
+  <form [formGroup]="editChannelForm" (ngSubmit)="editChannelFormSubmit()" novalidate>
+    <h3>Редактировать канал</h3>
+    <div class="flex-box">
+      <div>
+        <label for="userChannel">Название канала</label>
+        <div>
+          <input id="userChannel" class="inp" type="text" formControlName="name">
+          <div *ngIf="editChannelForm.controls['name'].invalid && editChannelForm.controls['name'].touched">Придумайте
+            название вашего канала</div>
+        </div>
+        <label for="userName">Ваше имя</label>
+        <div>
+          <input id="userName" class="inp" type="text" formControlName="userName">
+          <div *ngIf="editChannelForm.controls['userName'].invalid && editChannelForm.controls['userName'].touched">
+            Пожалуйста введите имя</div>
+        </div>
+        <!-- Image -->
+        <label for="image">Добавить картинку</label>
+        <div>
+          <div class="image">
+            <div class="image-wrapper">
+              <img *ngIf="imageLoadStatus" [src]="image">
+              <img *ngIf="!imageLoadStatus" [src]="data.channel.image">
+              Рекомендованный размер: 300x300<br />
+              (не больше 1 Мб)
+            </div>
+            <label class="btn btn-image" for="image">Выбрать картинку</label>
+            <input type="file" id="image" class="invisible" formControlName="image"
+                   (change)="uploadFile($event)">
+            <mat-progress-bar *ngIf="!imageLoadStatus && imageSizeValid" mode="determinate"
+                              [value]="(imageLoadProgress | async)"></mat-progress-bar>
+            <div class="hint" *ngIf="!imageSizeValid">Максимальный размер картинки - 1Мб</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="margin-top: 15px;">
+        <!-- Country -->
+        <mat-form-field appearance="fill">
+          <mat-label>Выберете страну</mat-label>
+          <mat-select ngDefaultControl formControlName="country">
+            <mat-option [value]="data.channel.country">
+              <p *ngIf="data.channel.country.name == data.channel.country.native">{{data.channel.country.name}}</p>
+              <p *ngIf="data.channel.country.name != data.channel.country.native">{{data.channel.country.name}}
+                ({{data.channel.country.native}})</p>
+            </mat-option>
+            <mat-option *ngFor="let country of countries" [value]="country">
+              <p *ngIf="country.name == country.native">{{country.name}}</p>
+              <p *ngIf="country.name != country.native">{{country.name}} ({{country.native}})</p>
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="editChannelForm.controls['country'].invalid && editChannelForm.controls['country'].touched">
+            Пожалуйста,
+            выберете страну</mat-error>
+        </mat-form-field>
+
+        <!-- Language -->
+        <mat-form-field appearance="fill">
+          <mat-label>Выберете язык</mat-label>
+          <mat-select ngDefaultControl formControlName="language">
+            <mat-option [value]="currentLanguage">
+              {{currentLanguage.name}}</mat-option>
+            <mat-option *ngFor="let language of languages" [value]="language">
+              <p *ngIf="language.name == language.native">{{language.name}}</p>
+              <p *ngIf="language.name != language.native">{{language.name}} ({{language.native}})</p>
+            </mat-option>
+          </mat-select>
+          <mat-error
+                     *ngIf="editChannelForm.controls['language'].invalid && editChannelForm.controls['language'].touched">
+            Пожалуйста, выберете язык</mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Description -->
+      <div>Описание канала</div>
+      <quill-editor formControlName="description"></quill-editor>
+
+    </div>
+
+    <button class="btn btn-submit" [disabled]="!editChannelForm.valid" type="submit">Сохранить изменения</button>
+    <p class="err-msg" *ngIf="!editChannelForm.valid">(Пожалуйста заполните все нужные поля)</p>
+  </form>
+
+</mat-dialog-content>

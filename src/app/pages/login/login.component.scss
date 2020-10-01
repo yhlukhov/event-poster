@@ -1,40 +1,102 @@
 form {
-    margin: 20px;
-    padding: 5px;
-    width: 70%;
-    border: 4px solid whitesmoke;
-    border-radius: 6px;
-    background-color: rgba(135, 206, 250, 0.9);
+  margin: 20px;
+  padding: 5px;
+  width: 70%;
+  border: 4px solid whitesmoke;
+  border-radius: 6px;
+  background-color: rgba(135, 206, 250, 0.9);
+}
+
+.flex-box {
+  display: flex;
+}
+
+.right-side {
+  min-width: 334px;
+  height: fit-content;
+  margin-left: 10px;
+}
+
+.image {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-wrapper {
+  width: 160px;
+  height: 160px;
+  margin-top: 10px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid darkslategrey;
+}
+
+img {
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn-image {
+  padding-top: 5px;
+  height: 30px;
+}
+
+mat-progress-bar {
+  width: 86%;
+  margin-top: -15px;
 }
 
 .no-acc {
-    margin-top: 15px;
-    font-size: larger;
+  margin-top: 15px;
+  font-size: larger;
 }
+
 .no-acc-msg {
-    text-shadow: -1px 1px 1px rgba(128, 128, 128, 0.5);
+  text-shadow: -1px 1px 1px rgba(128, 128, 128, 0.5);
 }
+
 .yes-acc-msg {
-    text-shadow: -1px 1px 1px lightgrey;
+  text-shadow: -1px 1px 1px lightgrey;
 }
-.no-acc-crt {
-    cursor: pointer;
-    color: rgb(0, 107, 41);
-    font-weight: bold;
-    margin-left: 10px;
-    text-shadow: -1px 1px 1px rgba(0, 129, 49, 0.5);
-}
+
+.no-acc-crt,
 .yes-acc-crt {
-    cursor: pointer;
-    color: rgb(0, 141, 54);
-    font-weight: bold;
-    margin-left: 10px;
-    text-shadow: -1px 1px 1px rgb(0, 129, 50);
+  cursor: pointer;
+  color: rgb(0, 141, 54);
+  font-weight: bold;
+  margin-left: 10px;
+  text-shadow: -1px 1px 1px rgba(0, 129, 49, 0.5);
 }
+
 .btn-submit {
-    margin-top: 10px;
-    background-color: rgba(144, 238, 144, 0.8);;
+  margin-top: 10px;
+  background-color: rgba(144, 238, 144, 0.8);
 }
+
 .err-msg {
-    
+  font-size: small;
+}
+
+
+@media screen and (max-width: 968px) {
+  form {
+    margin: 5px;
+    width: 93%;
+    border: 2px solid whitesmoke;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .flex-box {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }

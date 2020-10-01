@@ -1,48 +1,98 @@
 section {
-    margin: 20px;
-    margin-top: 30px;
+    margin: 30px auto;
     width: 70%;
-    background-color: rgba(255, 228, 205, 0.95);
-    border: 6px solid rgb(255, 253, 254);
-    box-shadow: -1px 1px 3px rgb(94, 82, 77);
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: darkolivegreen;
+    transition-duration: 0.2s;
 }
 
-.event-details {
-    margin: 5px;
+hr {
+    width: 110%;
+    border-radius: 50%;
+    margin-left: -5%;
+}
+
+.flex-line-start{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 h2 {
     font-family: akronim;
-    font-size: xx-large;
+    font-weight: 500;
+    font-size: 3em;
+    letter-spacing: 2px;
+    margin-top: 0;
     margin-bottom: 10px;
     color: rgb(255, 95, 32);
 }
 
-p {
-    font-size: large;
-    word-wrap: break-word;
-    color: rgb(99, 34, 9);
+.event-image {
+    width: 35%;
+    min-width: 250px;
+    border-radius: 3px;
+    border: 0.5px solid rgba(196, 147, 147, 0.4);
+    box-shadow: -1px 1px 3px rgb(134, 119, 109);
+    z-index: 2;
 }
 
 .detail {
+    width: 65%;
+    padding: 10px;
+    margin-left: -2px;
+    margin-top: -2px;
+    background-color: rgba(245, 245, 245, 0.9);
+    box-shadow: -1px 1px 3px rgb(134, 119, 109);
     font-family: candara;
     font-size: larger;
+    z-index: 1;
 }
 
-.flex-line-between{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.channel-url {
+    cursor: pointer;
+    text-shadow: -1px 1px 1px lightblue;
+}
+.channel-url:hover {
+    transform: scale(1.03);
+}
+
+.description {
+    width: 100%;
+    margin: 50px 20px 20px;
+    border-radius: 3px;
+    border: 3px solid rgba(196, 147, 147, 0.5);
+    box-shadow: -1px 1px 3px rgb(134, 119, 109);
+    background-color: rgba(245, 245, 245, 0.9);
 }
 
 .url {
-    font-size: larger;
-    font-family: candara;
-    padding: 3px;
-    border: 1px solid lightcoral;
-    border-radius: 3px;
-    background-color: lightcoral;
+    width: 50%;
+    margin-left: 30%;
+    text-align: center;
+}
+.link {
+    font-family: akronim;
+    font-size: x-large;
+    text-shadow: -1px 1px 2px rgb(175, 50, 0);
+    text-decoration: none;
+    padding: 3px 10px 5px 10px;
+    color: rgb(255, 72, 0);
+    background-color: whitesmoke;
+    border-radius: 2px;
+    box-shadow: -1px 1px 3px rgb(194, 97, 59);
+    
+}
+
+td {
+    border-bottom: 1px solid grey;
+    text-align: center;
+}
+tr td:last-child {
+    padding-left: 15px;
 }
 
 .breadcrumb {
