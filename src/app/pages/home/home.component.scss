@@ -1,3 +1,22 @@
+section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+.filters {
+  min-width: 20%;
+}
+.teachings {
+  width: 100%;
+  margin-right: 20%;
+  text-align: center;
+  font-family: murrey;
+  font-size: 3em;
+  line-height: 1.2;
+  color: lightblue;
+  text-shadow: 1px 1px 3px rgb(167, 214, 230);
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
