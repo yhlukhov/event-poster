@@ -1,3 +1,6 @@
+section {
+  min-height: calc(100vh - 271px);
+}
 form {
   margin: 20px;
   padding: 5px;
@@ -92,11 +95,20 @@ mat-progress-bar {
     width: 93%;
     border: 2px solid whitesmoke;
   }
+  section {
+    min-height: calc(100vh - 256px);
+  }
 }
 
 @media screen and (max-width: 640px) {
   .flex-box {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  section {
+    min-height: calc(100vh - 371px);
   }
 }

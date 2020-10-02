@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  min-height: calc(100vh - 421px);
+  min-height: calc(100vh - 251px);
 }
 
 .box {
@@ -128,5 +128,11 @@ a:active {
 @media screen and (max-width: 800px) {
   .box {
     margin: 5px 0;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .container {
+    min-height: calc(100vh - 391px);
   }
 }
