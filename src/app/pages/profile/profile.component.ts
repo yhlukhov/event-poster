@@ -7,6 +7,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { EventService } from '../../shared/services/event.service';
 import { CopyEventComponent } from 'src/app/components/copy-event/copy-event.component';
 import { EditChannelComponent } from '../../components/edit-channel/edit-channel.component';
+import { ChannelService } from '../../shared/services/channel.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private authService: AuthService,
-    private eventService: EventService) { }
+    private eventService: EventService,
+    private channelService: ChannelService) { }
 
   ngOnInit(): void {
     this.getChannelData()
@@ -47,13 +49,22 @@ export class ProfileComponent implements OnInit {
   }
 
   openAddDialog() { // додати івент
-    const dialogRef = this.dialog.open(NewEventComponent, {
-      width: '600px',
-      data: { channel: this.channel, actionAdd: true }
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      this.loadEvents()
-    });
+    const channel = this.channelService.getChannel(this.channel.id)
+    channel.get().then(snap => {
+      snap.forEach(element=>{
+        const channelData = element.data() as IChannel
+        if(channelData.approved) {
+          const dialogRef = this.dialog.open(NewEventComponent, {
+            width: '600px',
+            data: { channel: this.channel, actionAdd: true }
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this.loadEvents()
+          });
+        }
+        else alert("Подождите немного пока ваш канал будет добавлен в базу, или обратитесь к администратору сайта чтобы ускорить этот процесс!")
+      })
+    })
   }
 
   openCopyDialog(event: IEvent) { // копіювати івент

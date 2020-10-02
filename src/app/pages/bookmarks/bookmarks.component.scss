@@ -20,7 +20,8 @@
 
 h3 {
   width: 70%;
-  font-family: akronim;
+  font-family: murrey;
+  font-size: x-large;
   text-align: center;
   margin: 95px auto 0 auto;
   cursor: pointer;
@@ -73,7 +74,7 @@ a:active {
   font-weight: bold;
   padding-left: 3px;
   padding-right: 3px;
-  text-shadow: -1px 1px 2px grey;
+  text-shadow: -1px 1px 1px rgba(128, 128, 128, 0.5);
   margin-bottom: 15px;
 }
 
