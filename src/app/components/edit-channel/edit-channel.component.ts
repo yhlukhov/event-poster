@@ -101,9 +101,10 @@ export class EditChannelComponent implements OnInit {
     this.data.channel.language = {...language} as ILanguage
     this.data.channel.description = description
     this.data.channel.image = this.image
+    console.log(this.data.channel)
     this.channelService.editChannel(this.data.channel).then(()=>{
       this.dialogRef.close()
-    })
+    }).catch(console.log)
   }
 
 }

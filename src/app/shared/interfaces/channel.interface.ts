@@ -11,5 +11,6 @@ export interface IChannel {
     image: string,
     userRole: string,
     subscribe: boolean,
+    approved: boolean,
     id: string
 }

@@ -13,6 +13,7 @@ export class Event implements IEvent {
         public image: string,
         public channel: IChannel,
         public bookmark = false,
+        public approved = true,
         public id = ""
     ) { }
 }

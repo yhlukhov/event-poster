@@ -20,13 +20,10 @@
       </div>
       <h3 [routerLink]="['event/'+event.channel.country.name, event.channel.name, event.id]">{{event.name}}</h3>
       <div class="date">
-        <span>{{event.startDate | date:"dd/MM/yyyy EEEE"}}</span>
-      </div>
-      <div class="time">
-        <span>{{event.startDate | date:"HH:mm"}}</span>
+        <span>{{event.startDate | date:"dd/MM/yyyy EEEE HH:mm"}}</span>
       </div>
       <div class="picture">
-        <img width="100px" height="100px" src="{{event.image}}">
+        <img [routerLink]="['event/'+event.channel.country.name, event.channel.name, event.id]" src="{{event.image}}">
       </div>
 
       <div class="info">

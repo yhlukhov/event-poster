@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   min-height: calc(100vh - 421px);
+  transition-duration: 0.2s;
 }
 
 .box {
@@ -31,6 +32,9 @@ h3 {
   margin-left: 40px;
   cursor: pointer;
 }
+h3:hover {
+  transform: scale(1.03);
+}
 
 app-subscribe {
   position: absolute;
@@ -45,6 +49,10 @@ app-subscribe {
   border-radius: 3px;
   box-shadow: -1px 1px 2px rgb(94, 68, 35);
 }
+.channel-logo:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
 
 .info {
   min-height: 196px;
@@ -57,6 +65,14 @@ app-subscribe {
   margin-top: 147px;
   margin-left: 25px;
   // transform: rotate(1deg);
+}
+
+.url {
+  text-decoration: underline;
+}
+.url:hover {
+  cursor: pointer;
+  transform: scale(1.03);
 }
 
 .flex-line {

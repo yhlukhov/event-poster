@@ -14,6 +14,7 @@ export class Channel implements IChannel {
         public image: string,
         public userRole = 'user',
         public subscribe = true,
+        public approved = false,
         public id = "",
     ) {}
 }

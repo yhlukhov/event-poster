@@ -36,6 +36,19 @@ export class ChannelEventsComponent implements OnInit {
     this.load = !this.load
   }
 
+  approve(event: IEvent) {
+    event.approved = true
+    this.eventService.editEvent(event).then(() => {
+      this.loadEvents()
+    })
+  }
+  disapprove(event: IEvent) {
+    event.approved = false
+    this.eventService.editEvent(event).then(() => {
+      this.loadEvents()
+    })
+  }
+
   delete(event: IEvent) {
     if (confirm("Are you sure you want to delete event?"))
       this.eventService.deleteEvent(event).then(() => {

@@ -10,5 +10,6 @@ export interface IEvent {
     image: string
     channel: IChannel
     bookmark: boolean
+    approved: boolean
     id: string
 }

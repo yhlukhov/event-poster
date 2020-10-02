@@ -32,6 +32,7 @@ export class AuthService {
         image: channel.image,
         userRole: channel.userRole,
         subscribe: channel.subscribe,
+        approved: channel.approved,
         id: afUser.user.uid
       }
 

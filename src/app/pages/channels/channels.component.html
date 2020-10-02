@@ -12,7 +12,7 @@
         <h3 [routerLink]="[ channel.id ]">{{channel.name}}</h3>
         <app-subscribe [channel]="channel"></app-subscribe>
       </div>
-      <img class="channel-logo" src="{{channel.image}}" width="70px" height="70px">
+      <img class="channel-logo"  [routerLink]="[ channel.id ]" src="{{channel.image}}" width="70px" height="70px">
       <div class="info">
         <div class="flex-line">
           <img src="../../../assets/images/user.png" width="30px" height="30px" alt="Проводит">
@@ -33,7 +33,7 @@
         
         <div class="flex-line" [routerLink]="[ channel.id ]" style="cursor: pointer;">
           <img src="../../../assets/images/details.png" width="30px" height="30px" alt="Детали">
-          Смотреть детали
+          <span class="url">Смотреть детали</span>
         </div>
       </div>
     </div>

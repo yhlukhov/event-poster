@@ -40,7 +40,8 @@ export class HomeComponent implements OnInit {
         const event = {...data, id} as IEvent
         event.startDate = new Date(event.startDate['seconds']*1000)
         if(this.bookmarks.findIndex(bookmark => bookmark === event.id) !== -1) event.bookmark = true
-        this.collection.push(event)
+        if(event.approved)
+          this.collection.push(event)
       })
     })
   }
@@ -66,13 +67,6 @@ export class HomeComponent implements OnInit {
   onLanguageFilter(languages: Array<string>) {
     localStorage.setItem('languageFilter', JSON.stringify(languages))
     this.languageFilter = languages
-  }
-
-  counter() {
-    let count = 0;
-    return ()=> {
-      return ++count%8;
-    };
   }
 
 }

@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   min-height: calc(100vh - 421px);
+  transition-duration: 0.2s;
 }
 
 .box {
@@ -24,6 +25,10 @@ h3 {
   text-align: center;
   margin: 95px auto 0 auto;
   cursor: pointer;
+}
+h3:hover {
+  transform: scale(1.03);
+  transition-duration: 0.2s;
 }
 
 .bookmark {
@@ -76,7 +81,10 @@ a:active {
   text-shadow: -1px 1px 2px grey;
   margin-bottom: 15px;
 }
-
+.link:hover {
+  transform: scale(1.03);
+  transition-duration: 0.2s;
+}
 
 .flex-line {
   display: flex;
@@ -85,24 +93,27 @@ a:active {
 }
 
 .date {
-  font-size: larger;
+  font-size: x-large;
   display: flex;
   justify-content: center;
 }
 
-.time {
-  display: flex;
-  justify-content: center;
-  font-size: x-large;
-}
 .picture {
   margin-top: 10px;
   display: flex;
   justify-content: center;
 }
+
 .picture img {
   border-radius: 50%;
+  width: 105px;
+  height: 105px;
   box-shadow: -1px 1px 3px rgba(165, 71, 42, 0.8);
+}
+.picture img:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  transition-duration: 0.2s;
 }
 
 .app-filter-country {

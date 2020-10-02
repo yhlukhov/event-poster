@@ -5,6 +5,8 @@ import { IChannel } from 'src/app/shared/interfaces/channel.interface';
 import { Channel } from '../../shared/models/channel.model';
 import { from } from 'rxjs';
 import { IEvent } from 'src/app/shared/interfaces/event.interface';
+import { ILanguage } from '../../shared/interfaces/language.interface';
+import { ICountry } from '../../shared/interfaces/country.interface';
 
 
 @Component({
@@ -27,8 +29,8 @@ export class AdminComponent implements OnInit {
     this.channelService.getAllChannels().subscribe((channels) => {
       channels.forEach(channel => {
         const data = channel.data()
-        const { name, userName, userEmail, userPassword, country, language, description, image, userRole, subscribe, id } = data
-        this.channels.push(new Channel(name, userName, userEmail, userPassword, country, language, description, image, userRole, subscribe, id))
+        const { name, userName, userEmail, userPassword, country, language, description, image, userRole, subscribe, approved, id } = data
+        this.channels.push({ name, userName, userEmail, country, language, description, image, userRole, subscribe, approved, id } as IChannel)
       })
     })
   }
@@ -39,7 +41,7 @@ export class AdminComponent implements OnInit {
         event.forEach(record => {
           const data = record.data() as IEvent
           const id = record.id
-          const event = {...data, id}
+          const event = { ...data, id }
           this.deleteEvent(event)
         })
       })
@@ -53,8 +55,19 @@ export class AdminComponent implements OnInit {
     this.eventService.deleteEvent(event)
   }
 
-  filter(event: InputEvent) {
-    // to be implemented
+  approve(channel: IChannel) {
+    channel.approved = true
+    channel.language = { ...channel.language as ILanguage }
+    channel.country = { ...channel.country as ICountry }
+    this.channelService.editChannel({ ...channel } as IChannel)
+  }
+  disapprove(channel: IChannel) {
+    if (confirm("Вы действительно хотите заблокировать канал?")) {
+      channel.approved = false
+      channel.language = { ...channel.language as ILanguage }
+      channel.country = { ...channel.country as ICountry }
+      this.channelService.editChannel({ ...channel } as IChannel)
+    }
   }
 
 }
