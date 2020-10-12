@@ -56,16 +56,16 @@ export class LoginComponent implements OnInit {
 
   loginFormInit() {
     this.loginForm = new FormGroup({
-      userEmail: new FormControl('test@mail.ru', [Validators.required, Validators.email]),
-      userPassword: new FormControl('qwerty123', [Validators.required])
+      userEmail: new FormControl('', [Validators.required, Validators.email]),
+      userPassword: new FormControl('', [Validators.required])
     })
   }
   registerFormInit() {
     this.registerForm = new FormGroup({
       name: new FormControl('test-channel', [Validators.required, Validators.min(2)]),
       userName: new FormControl('your name', [Validators.required, Validators.min(2)]),
-      userEmail: new FormControl('test@mail.ru', [Validators.required, Validators.email]),
-      userPassword: new FormControl('qwerty123', [Validators.required, Validators.min(4)]),
+      userEmail: new FormControl('', [Validators.required, Validators.email]),
+      userPassword: new FormControl('', [Validators.required, Validators.min(4)]),
       country: new FormControl('', Validators.required),
       language: new FormControl({value: '', disabled: true}, Validators.required),
       description: new FormControl('', Validators.required),

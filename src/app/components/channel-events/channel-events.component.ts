@@ -11,8 +11,9 @@ import { Router } from '@angular/router';
 })
 export class ChannelEventsComponent implements OnInit {
   @Input() channel: IChannel
+  @Input() toggle: boolean
   events: Array<IEvent> = []
-  load = true
+  load = false
 
   constructor(private eventService: EventService) { }
 

@@ -17,6 +17,7 @@ import { ICountry } from '../../shared/interfaces/country.interface';
 export class AdminComponent implements OnInit {
   channels: Array<IChannel> = []
   filterPattern = "" // поле для фильтра
+  channelsToggle = false
 
   constructor(private channelService: ChannelService, private eventService: EventService) { }
 
@@ -68,6 +69,10 @@ export class AdminComponent implements OnInit {
       channel.country = { ...channel.country as ICountry }
       this.channelService.editChannel({ ...channel } as IChannel)
     }
+  }
+
+  showHideChannels() {
+    this.channelsToggle = !this.channelsToggle
   }
   
 }

@@ -12,6 +12,14 @@ section {
   background-color: rgba(255, 250, 241, 0.9);
 }
 
+.btn-channels {
+  margin-left: 1%;
+  margin-top: 10px;
+  width: 200px;
+  height: 40px;
+  background-color: rgba(255, 250, 241, 0.9);
+}
+
 .channels {
   width: 95%;
   margin-top: 15px;
@@ -37,7 +45,13 @@ section {
 }
 
 .channel-name {
+  cursor: pointer;
+  margin-left: 3px;
   font-weight: bold;
+  transition-duration: 0.2s;
+}
+.channel-name:hover {
+  transform: scale(1.02);
 }
 
 .controls {
@@ -52,9 +66,6 @@ section {
   font-size: medium
 }
 
-.btn-edit {
-  background-color: rgba(153, 205, 50, 0.5);
-}
 .btn-del {
   background-color: rgba(255, 94, 65, 0.5);
 }

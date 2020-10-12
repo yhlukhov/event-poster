@@ -1,20 +1,20 @@
 <input type="text" class="inp filter-input" [(ngModel)]="filterPattern" placeholder="Фильтр">
+<button (click)="showHideChannels()" class="btn btn-channels">{{channelsToggle? "Скрыть события" : "Показать события"}}</button>
 <section>
   <div class="channels" *ngFor="let channel of channels | filter: filterPattern">
     <div class="channel-data">
       <div>
-        <div class="channel-name">{{channel?.name}}</div>
+        <div class="channel-name" [routerLink]="[ '/channels/'+channel.id ]">{{channel?.name}}</div>
         <div>{{channel?.userName}}</div>
         <div>{{channel?.userEmail}}</div>
       </div>
       <div class="controls">
         <button *ngIf="!channel.approved" class="btn btn-small btn-approve" (click)="approve(channel)">Подтвердить</button>
-        <button class="btn btn-small btn-edit" [routerLink]="[ '/channels/'+channel.id ]">Детали</button>
         <button *ngIf="channel.approved" class="btn btn-small btn-disapprove" (click)="disapprove(channel)">Блокировать</button>
         <button class="btn btn-small btn-del" *ngIf="channel.userRole != 'admin-2311'" (click)="delete(channel)">Удалить канал</button>
       </div>
     </div>
-    <app-channel-events [channel]="channel"></app-channel-events>
+    <app-channel-events [channel]="channel" [toggle]="channelsToggle"></app-channel-events>
   </div>
 
 </section>

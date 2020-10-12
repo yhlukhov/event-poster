@@ -10,6 +10,15 @@
   justify-content: space-between;
 }
 
+.event-title {
+  margin-left: 3px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+.event-title:hover {
+  transform: scale(1.02);
+}
+
 .btn-small {
   margin-top: 3px;
   height: 30px;
@@ -18,13 +27,11 @@
 
 .btn-x-small {
   margin-top: 2px;
-  height: 25px;
-  font-size: small
+  height: 22px;
+  font-size: small;
+  border-radius: 3px;
 }
 
-.btn-edit {
-  background-color: rgba(153, 205, 50, 0.5);
-}
 .btn-del {
   background-color: rgba(255, 94, 65, 0.5);
 }
