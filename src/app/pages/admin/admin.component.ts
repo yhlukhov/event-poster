@@ -16,7 +16,7 @@ import { ICountry } from '../../shared/interfaces/country.interface';
 })
 export class AdminComponent implements OnInit {
   channels: Array<IChannel> = []
-
+  filterPattern = "" // поле для фильтра
 
   constructor(private channelService: ChannelService, private eventService: EventService) { }
 
@@ -69,5 +69,5 @@ export class AdminComponent implements OnInit {
       this.channelService.editChannel({ ...channel } as IChannel)
     }
   }
-
+  
 }

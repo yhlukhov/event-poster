@@ -32,4 +32,10 @@
     <quill-view-html [content]="channel?.description"></quill-view-html>
   </div>
   <hr>
+
+  <h3>Предстоящие События</h3>
+  <ul>
+    <li *ngFor="let event of events"><span>{{event?.name}}</span></li>
+  </ul>
+
 </section>

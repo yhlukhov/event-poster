@@ -1,6 +1,6 @@
+<input type="text" class="inp filter-input" [(ngModel)]="filterPattern" placeholder="Фильтр">
 <section>
-  <!-- <input type="text" (input)="filter($event)"> -->
-  <div class="channels" *ngFor="let channel of channels">
+  <div class="channels" *ngFor="let channel of channels | filter: filterPattern">
     <div class="channel-data">
       <div>
         <div class="channel-name">{{channel?.name}}</div>

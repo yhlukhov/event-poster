@@ -53,6 +53,7 @@ import { FilterBookmarkDatePipe } from './pages/bookmarks/filter-bookmark-date.p
 import { DaysSelectorComponent } from './components/days-selector/days-selector.component';
 import { OrderBookmarkEventsPipe } from './pages/bookmarks/order-bookmark-events.pipe';
 import { EditChannelComponent } from './components/edit-channel/edit-channel.component';
+import { FilterPipe } from './pages/admin/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { EditChannelComponent } from './components/edit-channel/edit-channel.com
     FilterBookmarkDatePipe,
     DaysSelectorComponent,
     OrderBookmarkEventsPipe,
-    EditChannelComponent
+    EditChannelComponent,
+    FilterPipe
   ],
   entryComponents: [
     NewEventComponent
