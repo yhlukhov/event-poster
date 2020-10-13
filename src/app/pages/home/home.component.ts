@@ -16,18 +16,20 @@ export class HomeComponent implements OnInit {
   languageFilter: Array<string> = []
   subscribeFilter: Array<string> = []
   bookmarks: Array<string> = []
+  teaching = ""
   i = 0
 
   constructor(
     private eventService: EventService,
     private router: Router,
     private actRoute: ActivatedRoute
-    
-    ) { }
+
+  ) { }
 
   ngOnInit(): void {
     this.loadCollection()
     this.loadFilters()
+    this.loadTeaching()
   }
 
   loadCollection() {
@@ -37,27 +39,38 @@ export class HomeComponent implements OnInit {
       data.forEach(eventObj => {
         const id = eventObj.payload.doc.id
         const data = eventObj.payload.doc.data() as Object
-        const event = {...data, id} as IEvent
-        event.startDate = new Date(event.startDate['seconds']*1000)
-        if(this.bookmarks.findIndex(bookmark => bookmark === event.id) !== -1) event.bookmark = true
-        if(event.approved)
+        const event = { ...data, id } as IEvent
+        event.startDate = new Date(event.startDate['seconds'] * 1000)
+        if (this.bookmarks.findIndex(bookmark => bookmark === event.id) !== -1) event.bookmark = true
+        if (event.approved)
           this.collection.push(event)
       })
     })
-  }
-  loadFilters() {
-    if(localStorage.getItem('countryFilter'))
-      this.countryFilter = JSON.parse(localStorage.getItem('countryFilter'))
-    if(localStorage.getItem('languageFilter'))
-      this.languageFilter = JSON.parse(localStorage.getItem('languageFilter'))
-    if(localStorage.getItem('unsubscribed'))
-      this.subscribeFilter = JSON.parse(localStorage.getItem('unsubscribed'))
-    
   }
   loadBookmarks() {
     if (localStorage.getItem('bookmarks')) {
       this.bookmarks = JSON.parse(localStorage.getItem('bookmarks'))
     }
+  }
+  loadFilters() {
+    if (localStorage.getItem('countryFilter'))
+      this.countryFilter = JSON.parse(localStorage.getItem('countryFilter'))
+    if (localStorage.getItem('languageFilter'))
+      this.languageFilter = JSON.parse(localStorage.getItem('languageFilter'))
+    if (localStorage.getItem('unsubscribed'))
+      this.subscribeFilter = JSON.parse(localStorage.getItem('unsubscribed'))
+  }
+  loadTeaching() {
+    fetch("./assets/json-data/teachings.json").then(teachings => {
+      teachings.json().then(teachings => {
+        const teachingsArr = teachings["en"]
+        const id = this.getRandomNum(teachingsArr.length)
+        this.teaching = teachingsArr[id]
+      })
+    })
+  }
+  getRandomNum(max) {
+    return Math.floor(Math.random()*max);
   }
 
   onCountryFilter(countries: Array<string>) {

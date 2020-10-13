@@ -14,12 +14,14 @@ export class ChannelsComponent implements OnInit {
   channels: IChannel[]
   countryFilter: Array<string> = []
   languageFilter: Array<string> = []
+  teaching = ""
 
   constructor(private channelService: ChannelService) { }
 
   ngOnInit(): void {
     this.loadChannels()
     this.loadFilters()
+    this.loadTeaching()
   }
 
   loadChannels() {
@@ -41,6 +43,18 @@ export class ChannelsComponent implements OnInit {
       this.countryFilter = JSON.parse(localStorage.getItem('countryFilter'))
     if(localStorage.getItem('languageFilter'))
       this.languageFilter = JSON.parse(localStorage.getItem('languageFilter'))
+  }
+  loadTeaching() {
+    fetch("./assets/json-data/teachings.json").then(teachings => {
+      teachings.json().then(teachings => {
+        const teachingsArr = teachings["en"]
+        const id = this.getRandomNum(teachingsArr.length)
+        this.teaching = teachingsArr[id]
+      })
+    })
+  }
+  getRandomNum(max) {
+    return Math.floor(Math.random()*max);
   }
 
   onCountryFilter(countries:Array<string>) {
