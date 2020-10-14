@@ -8,6 +8,7 @@ import { Channel } from '../../shared/models/channel.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { ChannelService } from '../../shared/services/channel.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
   registerForm: FormGroup
-  isLogin = true //login or register
+  isLogin = false //login or register
   
   countries: Array<ICountry> = [] //populates on Init in method initData()
   languages: Array<ILanguage> = [] //populates on Init in method initData()
@@ -28,8 +29,10 @@ export class LoginComponent implements OnInit {
   imageSizeValid = true
   imageLoadProgress: Observable<Number>
   imageLoadStatus = false
+  channelExists = false // check during registration if channel name already exists
+  emailRegExp = /^.+@.+\..+$/
 
-  constructor( private authService: AuthService, private afStorage: AngularFireStorage) { }
+  constructor( private authService: AuthService, private afStorage: AngularFireStorage, private channelService: ChannelService) { }
 
   ngOnInit(): void {
     this.loginFormInit()
@@ -62,10 +65,10 @@ export class LoginComponent implements OnInit {
   }
   registerFormInit() {
     this.registerForm = new FormGroup({
-      name: new FormControl('test-channel', [Validators.required, Validators.min(2)]),
-      userName: new FormControl('your name', [Validators.required, Validators.min(2)]),
-      userEmail: new FormControl('', [Validators.required, Validators.email]),
-      userPassword: new FormControl('', [Validators.required, Validators.min(4)]),
+      name: new FormControl('', [Validators.required, Validators.min(2)]),
+      userName: new FormControl('', [Validators.required, Validators.min(2)]),
+      userEmail: new FormControl('', [Validators.required, Validators.email, Validators.pattern(this.emailRegExp)]),
+      userPassword: new FormControl('', [Validators.required, Validators.min(6)]),
       country: new FormControl('', Validators.required),
       language: new FormControl({value: '', disabled: true}, Validators.required),
       description: new FormControl('', Validators.required),
@@ -88,7 +91,11 @@ export class LoginComponent implements OnInit {
   }
   registerFormSubmit() {
     const {name, userName, userEmail, userPassword, country, language, description} = this.registerForm.value
-    this.authService.registerChannel(new Channel(name, userName, userEmail, userPassword, country, language, description, this.image))
+    this.channelService.getChannelByName(name).get().then(existingChannel => {
+      existingChannel.size === 0
+      ? this.authService.registerChannel(new Channel(name, userName, userEmail, userPassword, country, language, description, this.image))
+      : this.channelExists = true
+    })
   }
 
   switchLoginReg() {
@@ -99,7 +106,7 @@ export class LoginComponent implements OnInit {
     const file = event.target.files[0]
     
     this.imageLoadStatus = false
-    if (file.size < 1000000) {
+    if (file.size < 3000000) {
       const type = file.type.slice(file.type.indexOf('/') + 1)
       const name = file.name.slice(0, file.name.lastIndexOf('.'))
       const path = `images/${name}.${type}`

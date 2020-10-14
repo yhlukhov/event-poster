@@ -5,12 +5,12 @@
   <label for="userEmail">Логин</label>
   <div>
     <input id="userEmail" class="inp" type="email" formControlName="userEmail">
-    <div *ngIf="loginForm.controls['userEmail'].invalid && loginForm.controls['userEmail'].touched">Проверте почту</div>
+    <div class="err-msg" *ngIf="loginForm.controls['userEmail'].invalid && loginForm.controls['userEmail'].touched">Проверте почту</div>
   </div>
   <label for="userPassword">Пароль</label>
   <div>
     <input id="userPassword" class="inp" type="password" formControlName="userPassword">
-    <div *ngIf="loginForm.controls['userPassword'].invalid && loginForm.controls['userPassword'].touched">Введите пароль
+    <div class="err-msg" *ngIf="loginForm.controls['userPassword'].invalid && loginForm.controls['userPassword'].touched">Введите пароль
     </div>
   </div>
   <button class="btn btn-submit" type="submit" [disabled]="!loginForm.valid">Войти</button>
@@ -28,8 +28,9 @@
       <label for="userChannel">Название канала</label>
       <div>
         <input id="userChannel" class="inp" type="text" formControlName="name">
-        <div *ngIf="registerForm.controls['name'].invalid && registerForm.controls['name'].touched">Придумайте
-          название вашего канала</div>
+        <div class="err-msg" *ngIf="registerForm.controls['name'].invalid && registerForm.controls['name'].touched">Придумайте
+          название</div>
+        <div *ngIf="channelExists" class="err-msg">Канал с таким именем уже существует</div>
       </div>
       <label for="userName">Ваше имя</label>
       <div>
@@ -40,31 +41,31 @@
       <label for="userEmail">Ваш емейл-адрес</label>
       <div>
         <input id="userEmail" class="inp" type="email" formControlName="userEmail">
-        <div *ngIf="registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched">Проверте
+        <div class="err-msg" *ngIf="registerForm.controls['userEmail'].invalid && registerForm.controls['userEmail'].touched">Проверте
           почту
         </div>
       </div>
       <label for="userPassword">Пароль</label>
       <div>
         <input id="userPassword" class="inp" type="password" formControlName="userPassword">
-        <div *ngIf="registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched">
+        <div class="err-msg" *ngIf="registerForm.controls['userPassword'].invalid && registerForm.controls['userPassword'].touched">
           Введите пароль</div>
       </div>
       <!-- Image -->
       <label for="image">Добавить картинку</label>
+      <div class="err-msg" *ngIf="!imageSizeValid">Максимальный размер картинки - 3Мб</div>
       <div>
         <div class="image">
           <div class="image-wrapper">
             <img *ngIf="imageLoadStatus" [src]="image">
-            Рекомендованный размер: 300x300<br />
-            (не больше 1 Мб)
+            Рекомендованный размер: 1x1<br><br>
+            (не больше 3 Мб)
           </div>
           <label class="btn btn-image" for="image">Выбрать картинку</label>
           <input type="file" id="image" class="invisible" formControlName="image"
                  (change)="uploadFile($event)">
           <mat-progress-bar *ngIf="!imageLoadStatus && imageSizeValid" mode="determinate"
                             [value]="(imageLoadProgress | async)"></mat-progress-bar>
-          <div class="hint" *ngIf="!imageSizeValid">Максимальный размер картинки - 1Мб</div>
         </div>
 
       </div>

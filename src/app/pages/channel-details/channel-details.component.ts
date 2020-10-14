@@ -27,10 +27,11 @@ export class ChannelDetailsComponent implements OnInit {
   }
 
   loadChannel() {
-    const id = this.actRoute.snapshot.paramMap.get('id')
+    // const id = this.actRoute.snapshot.paramMap.get('id')
+    const name = this.actRoute.snapshot.paramMap.get('name')
     this.channelService.getAllChannels().subscribe(data=>{
       data.forEach(channel => {
-        if(channel.id === id) {
+        if(channel.data().name === name) {
           const data = channel.data()
           const id = channel.id
           this.channel = {...data, id} as IChannel

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChannelService } from '../../shared/services/channel.service';
 import { IChannel } from '../../shared/interfaces/channel.interface';
-import { ILanguage } from '../../shared/interfaces/language.interface';
-import { ICountry } from '../../shared/interfaces/country.interface';
 
 @Component({
   selector: 'app-channels',

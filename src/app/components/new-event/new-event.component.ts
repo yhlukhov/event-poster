@@ -94,7 +94,7 @@ export class NewEventComponent implements OnInit {
   uploadFile(event) {
     const file = event.target.files[0]
     this.imageLoadStatus = false
-    if (file.size < 1000000) {
+    if (file.size < 3000000) {
       const type = file.type.slice(file.type.indexOf('/') + 1)
       const name = file.name.slice(0, file.name.lastIndexOf('.'))
       const path = `images/${name}.${type}`

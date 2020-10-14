@@ -58,8 +58,8 @@
     <div class="image">
       <div class="image-wrapper">
         <img *ngIf="imageLoadStatus" [src]="image">
-        Рекомендованный размер: 300x300<br/>
-        (не больше 1 Мб)
+        Рекомендованный размер: 1x1<br/>
+        (не больше 3 Мб)
         <img *ngIf="!data.actionAdd && !imageLoadStatus" [src]="data.event.image">
       </div>
       <label class="btn btn-image" for="input-picture">{{data.actionAdd? "Выбрать картинку" : "Изменить картинку"}}</label>

@@ -9,8 +9,6 @@ import { firestore } from 'firebase';
 })
 export class ChannelService {
 
-  allChannels: IChannel[]
-
   constructor(private afStore: AngularFirestore) { }
 
   getAllChannels():Observable<firestore.QuerySnapshot<firestore.DocumentData>> {
@@ -23,6 +21,9 @@ export class ChannelService {
   
   getChannel(id:string) {
     return this.afStore.collection('channels').ref.where("id", "==", id)
+  }
+  getChannelByName(name:string) {
+    return this.afStore.collection('channels').ref.where("name", "==", name)
   }
 
   getLanguage(id:string): AngularFirestoreDocument<unknown> {

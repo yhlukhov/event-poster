@@ -27,23 +27,30 @@ section {
 
 .box {
   color: darkolivegreen;
-  width: 400px;
-  min-height: 400px;
+  width: 350px;
+  min-height: 360px;
   height: fit-content;
   margin: 0 25px 25px 25px;
-  padding: 5px;
+  // padding: 5px;
   display: flex;
   flex-direction: column;
   font-family: murrey;
   position: relative;
 }
 
+.bookmark {
+  position: absolute;
+  top: 15px;
+  right: 5%;
+}
+
 h3 {
-  width: 70%;
+  width: 80%;
   font-family: murrey;
   font-size: x-large;
+  line-height: 25px;
   text-align: center;
-  margin: 95px auto 0 auto;
+  margin: 60px auto 0 auto;
   cursor: pointer;
 }
 h3:hover {
@@ -51,17 +58,22 @@ h3:hover {
   transition-duration: 0.2s;
 }
 
-.bookmark {
-  position: absolute;
-  top: 50px;
-  right: 11%;
+.date {
+  margin-top: 5px;
+  font-size: 1.3em;
+  display: flex;
+  justify-content: center;
+}
+.date:hover {
+  transform: scale(1.03);
+  transition-duration: 0.2s;
 }
 
 .info {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
-  padding-top: 15px;
-  padding-bottom: 60px;
+  padding-top: 5px;
+  padding-bottom: 40px;
   font-size: x-large;
   display: flex;
   flex-direction: column;
@@ -78,28 +90,17 @@ h3:hover {
   z-index: -2;
 }
 
-a {
-  color: darkolivegreen;
-  text-decoration: underline;
-}
-a:hover {
-  color: darkolivegreen;
-  text-decoration: underline;
-}
-a:visited {
-  color: darkolivegreen;
-}
-a:active {
-  color: darkolivegreen;
-}
-
 .link {
   font-size: x-large;
   font-weight: bold;
-  padding-left: 3px;
-  padding-right: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: -3px;
+  border: 1px solid rgba(85, 114, 36, 0.4);
+  border-radius: 20px;
   text-shadow: -1px 1px 1px rgba(128, 128, 128, 0.5);
-  margin-bottom: 15px;
+  background-color: rgba(85, 107, 47, 0.07);
+  margin-bottom: 5px;
 }
 .link:hover {
   transform: scale(1.03);
@@ -112,10 +113,9 @@ a:active {
   align-items: center;
 }
 
-.date {
-  font-size: x-large;
-  display: flex;
-  justify-content: center;
+.organizer:hover {
+  transform: scale(1.03);
+  transition-duration: 0.2s;
 }
 
 .picture {
@@ -126,13 +126,13 @@ a:active {
 
 .picture img {
   border-radius: 50%;
-  width: 105px;
-  height: 105px;
-  box-shadow: -1px 1px 3px rgba(165, 71, 42, 0.8);
+  width: 110px;
+  height: 110px;
+  box-shadow: -1px 1px 3px rgba(98, 105, 80, 0.8);
 }
 .picture img:hover {
   cursor: pointer;
-  transform: scale(1.03);
+  transform: scale(1.05);
   transition-duration: 0.2s;
 }
 
@@ -153,6 +153,20 @@ a:active {
   margin-left: 0;
 }
 
+a {
+  color: darkolivegreen;
+  text-decoration: none;
+}
+a:hover {
+  color: darkolivegreen;
+  text-decoration: underline;
+}
+a:visited {
+  color: darkolivegreen;
+}
+a:active {
+  color: darkolivegreen;
+}
 
 /// Media screen
 @media screen and (max-width: 800px) {
