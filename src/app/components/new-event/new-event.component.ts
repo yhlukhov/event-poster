@@ -42,8 +42,8 @@ export class NewEventComponent implements OnInit {
       eventStartDate: new FormControl('', [Validators.required]),
       eventDuration: new FormControl("1 час"),
       eventDescription: new FormControl(),
-      eventAddress: new FormControl(),
-      eventLink: new FormControl('https://www.google.com', [Validators.required, Validators.pattern(this.urlRegex)]),
+      eventLanguage: new FormControl(this.data.channel.language.native),
+      eventLink: new FormControl('', [Validators.required, Validators.pattern(this.urlRegex)]),
       eventImage: new FormControl(),
     })
   }
@@ -55,7 +55,7 @@ export class NewEventComponent implements OnInit {
       eventStartDate: new FormControl(this.getDateString(event), [Validators.required]),
       eventDuration: new FormControl(event.duration),
       eventDescription: new FormControl(event.description),
-      eventAddress: new FormControl(event.address),
+      eventLanguage: new FormControl(event.language),
       eventLink: new FormControl(event.link, [Validators.required, Validators.pattern(this.urlRegex)]),
       eventImage: new FormControl(),
     })
@@ -76,8 +76,8 @@ export class NewEventComponent implements OnInit {
   }
 
   createEvent() {
-    const { eventName, eventOrganizer, eventStartDate, eventDuration, eventDescription, eventAddress, eventLink } = this.addEventForm.value
-    const event = new Event(eventName, eventOrganizer, new Date(eventStartDate), eventDuration, eventDescription, eventAddress, eventLink, this.image, this.data.channel)
+    const { eventName, eventOrganizer, eventStartDate, eventDuration, eventDescription, eventLanguage, eventLink } = this.addEventForm.value
+    const event = new Event(eventName, eventOrganizer, new Date(eventStartDate), eventDuration, eventDescription, eventLanguage, eventLink, this.image, this.data.channel)
     if (this.data.actionAdd) { // Create
       this.eventService.addEvent(event).then(() => {
         this.dialogRef.close()

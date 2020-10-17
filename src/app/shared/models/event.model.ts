@@ -8,7 +8,7 @@ export class Event implements IEvent {
         public startDate: Date,
         public duration: string,
         public description: string,
-        public address: string,
+        public language: string,
         public link: string,
         public image: string,
         public channel: IChannel,

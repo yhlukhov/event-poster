@@ -40,14 +40,14 @@
   </div>
 
   <div class="form-control">
-    <label>Адрес или место проведения</label>
-    <input type="text" class="inp inp-event" formControlName="eventAddress">
+    <label>Язык</label>
+    <input type="text" class="inp inp-event" formControlName="eventLanguage">
   </div>
 
   <div class="form-control">
     <label>Ссылка на участие (или регистрацию)<span class="hint">*<span class="tooltip">Необходимо
           заполнить</span></span></label>
-    <input type="text" class="inp inp-event" formControlName="eventLink">
+    <input id="site" type="text" class="inp inp-event" formControlName="eventLink" placeholder="https://www.site.com">
     <div class="hint" *ngIf="addEventForm.controls['eventLink'].invalid && addEventForm.controls['eventLink'].touched">
       Введите верную
       ссылку</div>

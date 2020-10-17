@@ -5,7 +5,7 @@ export interface IEvent {
     startDate: Date
     duration: string
     description: string
-    address: string
+    language: string
     link: string
     image: string
     channel: IChannel

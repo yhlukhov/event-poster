@@ -11,7 +11,7 @@
       <div class="controls">
         <button *ngIf="!channel.approved" class="btn btn-small btn-approve" (click)="approve(channel)">Подтвердить</button>
         <button *ngIf="channel.approved" class="btn btn-small btn-disapprove" (click)="disapprove(channel)">Блокировать</button>
-        <button class="btn btn-small btn-del" *ngIf="channel.userRole != 'admin-2311'" (click)="delete(channel)">Удалить канал</button>
+        <button class="btn btn-small btn-del" *ngIf="channel.userRole != 'admin-2311'" (click)="delete(channel)">Удалить</button>
       </div>
     </div>
     <app-channel-events [channel]="channel" [toggle]="channelsToggle"></app-channel-events>

@@ -1,5 +1,7 @@
 <ul class="breadcrumb">
-  <li [routerLink]="[ '/' ]" style="cursor: pointer;">Головна</li>
+  <li [routerLink]="[ '/' ]" style="cursor: pointer;">На Главную</li>
+  <img src="../../../assets/images/arrow-right.png" width="12px" height="12px" style="margin-top: 10px;">
+  <li [routerLink]="[ '/channels' ]" style="cursor: pointer;">Все Каналы</li>
   <img src="../../../assets/images/arrow-right.png" width="12px" height="12px" style="margin-top: 10px;">
   <li> {{ channel?.name | titlecase }} </li>
 </ul>

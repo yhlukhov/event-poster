@@ -1,5 +1,5 @@
 <ul class="breadcrumb">
-  <li [routerLink]="[ '/' ]" style="cursor: pointer;">Головна</li>
+  <li [routerLink]="[ '/' ]" style="cursor: pointer;">Главная</li>
   <img src="../../../assets/images/arrow-right.png" width="12px" height="12px" style="margin-top: 10px;">
   <li> {{ event?.name | titlecase }} </li>
 </ul>
@@ -28,11 +28,11 @@
           <td>Длительность</td>
           <td>{{event?.duration}}</td>
         </tr>
-        <tr *ngIf="event?.address">
-          <td>Место проведения</td>
-          <td>{{event?.address}}</td>
+        <tr>
+          <td>Язык</td>
+          <td>{{event?.language}}</td>
         </tr>
-        <div *ngIf="event?.address" class="line-break"></div>
+        <div class="line-break"></div>
         <tr>
           <td>Канал</td>
           <td class="channel-url" [routerLink]="['/channels/' + event?.channel.name ]">{{event?.channel.name}}</td>

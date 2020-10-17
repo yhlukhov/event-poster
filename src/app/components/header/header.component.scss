@@ -81,3 +81,39 @@ a:visited {
   left: 22px;
   transform: rotate(-16deg);
 }
+
+@media screen and (max-width: 550px) {
+  img {
+    width: 90px;
+  }
+  #events::after {
+    top: 42px;
+    left: 12px;
+    font-size: small;
+  }
+  #channels::after {
+    font-size: small;
+    top: 42px;
+    left: 17px;
+  }
+  #enter::after {
+    font-size: small;
+    top: 40px;
+    left: 25px;
+  }
+  #profile::after {
+    font-size: small;
+    top: 30px;
+    left: 20px;
+  }
+  #bookmarks::after {
+    font-size: 0.75em;
+    top: 44px;
+    left: 9px;
+  }
+  #admin::after {
+    top: 40px;
+    left: 20px;
+    font-size: small;
+  }
+}
